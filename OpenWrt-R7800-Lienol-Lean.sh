@@ -141,8 +141,8 @@ EOF
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-theme-argon is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
-# CONFIG_PACKAGE_luci-theme-argon-dark-mod is not set
-CONFIG_PACKAGE_luci-theme-argon-light-mod=y
+CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
+# CONFIG_PACKAGE_luci-theme-argon-light-mod is not set
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 CONFIG_PACKAGE_luci-theme-atmaterial=y
 CONFIG_PACKAGE_luci-theme-rosy=y
