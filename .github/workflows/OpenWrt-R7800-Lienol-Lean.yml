@@ -38,7 +38,7 @@ on:
 env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: dev-lean-lede
-  DIY_SH: OpenWrt-R7800.sh
+  DIY_SH: OpenWrt-R7800-Lienol-Lean.sh
   FREE_UP_DISK: true
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
