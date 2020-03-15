@@ -20,7 +20,7 @@ sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 sed -i 's/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 增加制作人
-sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
 
 #更改固件名称
 sed 's/OpenWrt/ClayMore/g' package/base-files/files/bin/config_generate
