@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: OpenWrt-R7800-Actions
+name: OpenWrt-R7800-Lienol-Lean
 
 on:
 # 定时触发
@@ -134,5 +134,5 @@ jobs:
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_Firmware_R7800_Lienol
+        name: OpenWrt_Firmware_R7800_Lienol_Lean-Lede
         path: ./artifact/
