@@ -9,7 +9,7 @@
 --------------
 
 ### 编译状态
-![OpenWrt-R7800-Status](https://github.com/ClayMoreBoy/OpenWrt-Actions-Lienol-R7800/workflows/OpenWrt-R7800-Actions/badge.svg)
+[![OpenWrt-R7800-Status](https://github.com/ClayMoreBoy/OpenWrt-Actions-Lienol-R7800/workflows/OpenWrt-R7800-Actions/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-Lienol-R7800/actions)
 
 仅编译网件r7800的路由器固件，原则上不接受个性化定制。
 
