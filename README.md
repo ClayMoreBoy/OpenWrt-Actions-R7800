@@ -1,5 +1,8 @@
-## 路由器固件[lede and Lienol](https://github.com/Lienol/openwrt/tree/dev-lean-lede)(openwrt)自动编译
-固件来源：[github](https://github.com/Lienol/openwrt/tree/dev-lean-lede)
+## Netgear R7800路由器固件自动编译
+固件来源：
+[Lienol's OpenWrt](https://github.com/Lienol/openwrt)
+
+[Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
 
 --------------
 * [编译状态](#编译状态)
@@ -9,9 +12,13 @@
 --------------
 
 ### 编译状态
-[![OpenWrt-R7800-Status](https://github.com/ClayMoreBoy/OpenWrt-Actions-Lienol-R7800/workflows/OpenWrt-R7800-Actions/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-Lienol-R7800/actions)
+[![OpenWrt-R7800-Lienol-Lean](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/workflows/OpenWrt-R7800-Lienol-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions?query=workflow%3AOpenWrt-R7800-Lienol-Lean)
 
-仅编译网件r7800的路由器固件，原则上不接受个性化定制。
+[![OpenWrt-R7800-Lean](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/workflows/OpenWrt-R7800-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions?query=workflow%3AOpenWrt-R7800-Lean)
+
+[![OpenWrt-R7800-Dev](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/workflows/OpenWrt-R7800-Dev/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions?query=workflow%3AOpenWrt-R7800-Dev)
+
+仅编译网件R7800的路由器固件，原则上不接受个性化定制。
 
 编译的固件永久保存以供挑选使用。
 
