@@ -1,8 +1,6 @@
 ## Netgear R7800路由器固件自动编译
 固件来源：
-[Lienol's OpenWrt](https://github.com/Lienol/openwrt)
-
-[Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
+[Lean](https://github.com/coolsnowwolf/lede)  丨  [Lienol](https://github.com/Lienol/openwrt)
 
 --------------
 * [编译状态](#编译状态)
