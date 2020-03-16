@@ -83,11 +83,11 @@ EOF
 # EOF
 
 # IPv6支持:
-#cat >> .config <<EOF
+cat >> .config <<EOF
 # CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
 # CONFIG_PACKAGE_ipv6helper is not set
 # CONFIG_IPV6 is not set
-#EOF
+EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
@@ -132,13 +132,25 @@ CONFIG_PACKAGE_luci-app-unblockmusic=y
 # CONFIG_KERNEL_IPV6_MROUTE is not set
 EOF
 
+# lienol插件选择:
+cat >> .config <<EOF
+CONFIG_PACKAGE_luci-app-passwall=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
+# CONFIG_POSTFIX_TLS is not set
+# CONFIG_POSTFIX_SASL is not set
+# CONFIG_POSTFIX_LDAP is not set
+# CONFIG_POSTFIX_CDB is not set
+# CONFIG_POSTFIX_SQLITE is not set
+# CONFIG_POSTFIX_PCRE is not set
+# CONFIG_KERNEL_IPV6 is not set
+# CONFIG_KERNEL_IPV6_MULTIPLE_TABLES is not set
+# CONFIG_KERNEL_IPV6_SUBTREES is not set
+# CONFIG_KERNEL_IPV6_MROUTE is not set
+EOF
+
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
-# CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
-CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-unblockneteasemusic-go=y #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
@@ -153,6 +165,7 @@ CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y #解锁网易云灰色歌曲
 #
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
 # CONFIG_PACKAGE_luci-app-zerotier is not set #Zerotier内网穿透
+# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set #IPSec VPN 服务器
 # CONFIG_PACKAGE_luci-app-pppoe-relay is not set #PPPoE穿透
 # CONFIG_PACKAGE_luci-app-pppoe-server is not set #PPPoE服务器
 # CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set #PPTP VPN 服务器
@@ -180,13 +193,14 @@ EOF
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
-CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+# CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 # CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
-# CONFIG_PACKAGE_luci-app-upnp is not set #通用即插即用UPnP(端口自动转发)
-# CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
-# CONFIG_DEFAULT_luci-app-vlmcsd is not set #KMS激活服务器
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
+# CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
+# CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
+# CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
+# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
 # CONFIG_PACKAGE_luci-app-ddns is not set #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
