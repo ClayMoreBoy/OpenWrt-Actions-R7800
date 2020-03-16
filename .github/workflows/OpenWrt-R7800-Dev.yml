@@ -121,7 +121,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt_bin
+        name: OpenWrt-bin
         path: openwrt/bin
 
     - name: 整理文件
@@ -137,5 +137,5 @@ jobs:
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt_Firmware_R7800_Lienol_Dev
+        name: OpenWrt-Firmware-R7800-Lienol-Dev
         path: ./artifact/
