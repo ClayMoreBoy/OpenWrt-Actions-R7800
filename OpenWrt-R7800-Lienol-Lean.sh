@@ -36,7 +36,6 @@ git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-a
 git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
-git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/OpenAppFilter
 
 #创建自定义配置文件 - OpenWrt-R7800
 
