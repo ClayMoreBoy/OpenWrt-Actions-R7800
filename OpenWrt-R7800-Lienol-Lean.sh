@@ -17,13 +17,13 @@ sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
 
 #WIFI名为MAC后六位
-sed -i 's/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+sed 's/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F \":\" '{print $4\"\"$5\"\"$6 }'| tr a-z A-Z)/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 增加制作人
 sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
 
 #更改固件名称
-sed 's/OpenWrt/ClayMore/g' package/base-files/files/bin/config_generate
+sed 's/OpenWrt/ClayMore/g' package/base-files/files/etc/init.d/system
 
 # 替换默认Argon主题
 rm -rf package/lean/luci-theme-argon
@@ -133,8 +133,6 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
-CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
