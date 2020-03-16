@@ -32,8 +32,8 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luc
 # 添加第三方软件包
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
-git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
+# git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
+# git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
 
@@ -119,14 +119,6 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
-# CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set
-# CONFIG_PACKAGE_luci-app-wol is not set
-# CONFIG_PACKAGE_luci-app-zerotier is not set
-# CONFIG_PACKAGE_luci-app-v2ray-server is not set
-# CONFIG_PACKAGE_luci-app-pppoe-relay is not set
-# CONFIG_PACKAGE_luci-app-pppoe-server is not set
-# CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set
-# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 # CONFIG_POSTFIX_TLS is not set
 # CONFIG_POSTFIX_SASL is not set
 # CONFIG_POSTFIX_LDAP is not set
@@ -139,8 +131,65 @@ CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_KERNEL_IPV6_MROUTE is not set
 EOF
 
+# 常用LuCI插件(禁用):
+cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
+# CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
+# CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
+# CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
+# CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
+# CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
+# CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
+#
+# passwall相关(禁用):
+#
+#
+# VPN相关插件(禁用):
+#
+# CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
+# CONFIG_PACKAGE_luci-app-zerotier is not set #Zerotier内网穿透
+# CONFIG_PACKAGE_luci-app-pppoe-relay is not set #PPPoE穿透
+# CONFIG_PACKAGE_luci-app-pppoe-server is not set #PPPoE服务器
+# CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set #PPTP VPN 服务器
+# CONFIG_PACKAGE_luci-app-trojan-server is not set #Trojan服务器
+# CONFIG_PACKAGE_luci-app-v2ray-server is not set #V2ray服务器
+# CONFIG_PACKAGE_luci-app-brook-server is not set #brook服务端
+# CONFIG_PACKAGE_luci-app-ssr-libev-server is not set #ssr-libev服务端
+# CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set #ssr-python服务端
+# CONFIG_PACKAGE_luci-app-kcptun is not set #Kcptun客户端
+#
+# 文件共享相关(禁用):
+#
+# CONFIG_PACKAGE_luci-app-aria2 is not set #Aria2离线下载
+# CONFIG_PACKAGE_luci-app-minidlna is not set #miniDLNA服务
+# CONFIG_PACKAGE_luci-app-kodexplorer is not set #可到私有云
+# CONFIG_PACKAGE_luci-app-filebrowser is not set #File Browser私有云
+# CONFIG_PACKAGE_luci-app-fileassistant is not set #文件助手
+# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
+# CONFIG_PACKAGE_luci-app-samba is not set #网络共享
+# CONFIG_PACKAGE_autosamba is not set #网络共享
+# CONFIG_PACKAGE_samba36-server is not set #网络共享
+EOF
+
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
+# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
+# CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
+CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
+# CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
+# CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
+# CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
+# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-ddns is not set #DDNS服务
+# CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
+# CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
+# CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
+# CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
+# CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
+CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
+CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
