@@ -119,22 +119,6 @@ EOF
 # lienol插件选择:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-unblockmusic=y
-# CONFIG_POSTFIX_TLS is not set
-# CONFIG_POSTFIX_SASL is not set
-# CONFIG_POSTFIX_LDAP is not set
-# CONFIG_POSTFIX_CDB is not set
-# CONFIG_POSTFIX_SQLITE is not set
-# CONFIG_POSTFIX_PCRE is not set
-# CONFIG_KERNEL_IPV6 is not set
-# CONFIG_KERNEL_IPV6_MULTIPLE_TABLES is not set
-# CONFIG_KERNEL_IPV6_SUBTREES is not set
-# CONFIG_KERNEL_IPV6_MROUTE is not set
-EOF
-
-# lienol插件选择:
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
 # CONFIG_POSTFIX_TLS is not set
 # CONFIG_POSTFIX_SASL is not set
@@ -175,6 +159,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-ssr-libev-server is not set #ssr-libev服务端
 # CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set #ssr-python服务端
 # CONFIG_PACKAGE_luci-app-kcptun is not set #Kcptun客户端
+# CONFIG_PACKAGE_shadowsocksr-libev-server is not set #ssr服务端
 #
 # 文件共享相关(禁用):
 #
