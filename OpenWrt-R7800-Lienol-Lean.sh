@@ -177,7 +177,8 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 # CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-# CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-frps is not set
 # CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
 # CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
