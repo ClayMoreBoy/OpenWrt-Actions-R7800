@@ -26,17 +26,16 @@ sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='Op
 sed 's/OpenWrt/ClayMore/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
-#rm -rf package/lean/luci-theme-argon
-#git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+# rm -rf package/lean/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 添加第三方软件包
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
-git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
-git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
-git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/OpenAppFilter
+# git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
+# git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
+# git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
 
 #创建自定义配置文件 - OpenWrt-R7800
 
@@ -147,7 +146,7 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
 # CONFIG_PACKAGE_luci-theme-argon-light-mod is not set
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
-CONFIG_PACKAGE_luci-theme-atmaterial=y
+# CONFIG_PACKAGE_luci-theme-atmaterial=y
 # CONFIG_PACKAGE_luci-theme-rosy is not set
 EOF
 
