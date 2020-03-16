@@ -118,7 +118,7 @@ EOF
 
 # lienol插件选择:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-app-passwall=y #科学上网
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
 # CONFIG_POSTFIX_TLS is not set
 # CONFIG_POSTFIX_SASL is not set
@@ -135,6 +135,9 @@ EOF
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
+CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
+CONFIG_PACKAGE_luci-app-unblockneteasemusic-go=y #解锁网易云灰色歌曲
+CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
