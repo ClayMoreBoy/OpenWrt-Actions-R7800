@@ -111,13 +111,22 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
+# CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-openclash=y
 EOF
 
 # lienol插件选择:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-passwall=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
+# CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set
+# CONFIG_PACKAGE_luci-app-wol is not set
+# CONFIG_PACKAGE_luci-app-zerotier is not set
+# CONFIG_PACKAGE_luci-app-v2ray-server is not set
+# CONFIG_PACKAGE_luci-app-pppoe-relay is not set
+# CONFIG_PACKAGE_luci-app-pppoe-server is not set
+# CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set
+# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set
 # CONFIG_POSTFIX_TLS is not set
 # CONFIG_POSTFIX_SASL is not set
 # CONFIG_POSTFIX_LDAP is not set
