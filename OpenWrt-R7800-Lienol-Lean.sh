@@ -135,6 +135,9 @@ EOF
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
+CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
+CONFIG_PACKAGE_luci-app-unblockneteasemusic-go=y #解锁网易云灰色歌曲
+CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
 # CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
