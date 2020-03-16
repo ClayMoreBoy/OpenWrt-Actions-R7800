@@ -36,7 +36,6 @@ git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-a
 git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
-git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/OpenAppFilter
 
 #创建自定义配置文件 - OpenWrt-R7800
 
@@ -133,8 +132,6 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
-CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
