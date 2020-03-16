@@ -228,6 +228,17 @@ CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
+# LuCI主题:
+cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-theme-argon is not set
+# CONFIG_PACKAGE_luci-theme-netgear is not set
+CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
+# CONFIG_PACKAGE_luci-theme-argon-light-mod is not set
+# CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
+CONFIG_PACKAGE_luci-theme-atmaterial=y
+CONFIG_PACKAGE_luci-theme-rosy=y
+EOF
+
 # 常用软件包:
 # cat >> .config <<EOF
 # CONFIG_PACKAGE_curl=y
