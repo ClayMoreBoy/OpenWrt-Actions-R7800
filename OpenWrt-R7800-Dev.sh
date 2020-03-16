@@ -20,7 +20,7 @@ sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 sed -i "s/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 增加制作人
-# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
+sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
 
 #更改固件名称
 sed 's/OpenWrt/ClayMore/g' package/base-files/files/etc/init.d/system
@@ -179,7 +179,7 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
+CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 # CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
@@ -187,7 +187,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
 # CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn=y #SoftEtherVPN服务器
-# CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
+CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
 # CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
 # CONFIG_PACKAGE_luci-app-ddns is not set #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
