@@ -134,8 +134,8 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
-CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
+# CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
+# CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
