@@ -19,7 +19,7 @@ sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
 #WIFI名为MAC后六位
 sed -i "s/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
-uci set wireless.@wifi-iface[0].ssid=OpenWrt_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
+uci set wireless.@wifi-iface[0].ssid=OpenWrt_$(cat /sys/class/ieee80211/phy0/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
 uci commit
 
 # 增加制作人
