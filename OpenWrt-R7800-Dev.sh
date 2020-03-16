@@ -62,8 +62,8 @@ touch ./.config
 
 # 编译R7800固件:
 cat >> .config <<EOF
-CONFIG_TARGET_ipq806x=y
-CONFIG_TARGET_ipq806x_DEVICE_netgear_r7800=y
+CONFIG_TARGET_ipq806x_generic=y
+CONFIG_TARGET_ipq806x_generic_DEVICE_netgear_r7800=y
 EOF
 
 # 设置固件大小:
@@ -118,6 +118,7 @@ EOF
 # lienol插件选择:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-passwall=y
+CONFIG_PACKAGE_luci-app-unblockmusic=y
 # CONFIG_POSTFIX_TLS is not set
 # CONFIG_POSTFIX_SASL is not set
 # CONFIG_POSTFIX_LDAP is not set
