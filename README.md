@@ -33,9 +33,9 @@
 
 ### 固件下载
 #### 最新固件下载
-网件r7800：[点此下载](https://github.com/ClayMoreBoy/OpenWrt-Actions-Lean-R7800/actions)
+网件r7800：[点此下载](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions)
 
-- 请注意：你需要点击`OpenWrt-R7800-Actions`按钮进入页面，然后点击`OpenWrt_Firmware_R7800`按钮进行下载。
+- 请注意：你需要点击左则Workflows列表`OpenWrt-R7800-Lienol-Lean`按钮进入页面，然后点击`OpenWrt_Firmware_R7800_Lienol_Dev`进行下载。
 
 
 ### 固件首次安装方式/刷机/救砖介绍
