@@ -158,6 +158,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-ssr-libev-server is not set #ssr-libev服务端
 # CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set #ssr-python服务端
 # CONFIG_PACKAGE_luci-app-kcptun is not set #Kcptun客户端
+# CONFIG_PACKAGE_shadowsocksr-libev-server is not set #ssr服务端
 #
 # 文件共享相关(禁用):
 #
@@ -174,7 +175,7 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
+CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 # CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
