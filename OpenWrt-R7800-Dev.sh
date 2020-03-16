@@ -62,6 +62,7 @@ touch ./.config
 
 # 编译R7800固件:
 cat >> .config <<EOF
+CONFIG_TARGET_ipq806x=y
 CONFIG_TARGET_ipq806x_generic=y
 CONFIG_TARGET_ipq806x_generic_DEVICE_netgear_r7800=y
 EOF
@@ -83,10 +84,11 @@ EOF
 # EOF
 
 # IPv6支持:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# CONFIG_PACKAGE_ipv6helper=y
-# EOF
+cat >> .config <<EOF
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
+# CONFIG_PACKAGE_ipv6helper is not set
+# CONFIG_IPV6 is not set
+EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
