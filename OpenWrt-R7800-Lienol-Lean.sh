@@ -13,7 +13,7 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 #取掉默认主题
 sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
-# sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
+sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
 
 #WIFI名为MAC后六位
