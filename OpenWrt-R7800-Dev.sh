@@ -30,6 +30,7 @@ sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRI
 # 添加第三方软件包
 # git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 # git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
@@ -191,13 +192,13 @@ CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
-# CONFIG_DEFAULT_luci-app-vlmcsd is not set #KMS激活服务器
+CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
 CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
-# CONFIG_PACKAGE_luci-app-ddns is not set #DDNS服务
+CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
 # CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
@@ -211,12 +212,8 @@ EOF
 # LuCI主题:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
-# CONFIG_PACKAGE_luci-theme-argon-dark-mod is not set
-# CONFIG_PACKAGE_luci-theme-argon-light-mod is not set
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-# CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 CONFIG_PACKAGE_luci-theme-material=y
-CONFIG_PACKAGE_luci-theme-openwrt=y
 EOF
 
 # 常用软件包:
