@@ -17,7 +17,8 @@ sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
 
 #WIFI名为MAC后六位
-# sed -i "s/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+rm -f package/kernel/mac80211/files/lib/wifi/mac80211.sh
+cp ../mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 增加制作人
 sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
