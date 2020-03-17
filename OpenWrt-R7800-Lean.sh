@@ -10,20 +10,19 @@
 # 定制默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-#取掉默认主题
-sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+# WIFI名为MAC后六位
+rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
+cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
 
-# sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
-# sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
-
-#WIFI名为MAC后六位
-sed -i 's/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+#替换banner
+rm -rf package/base-files/files/etc/banner
+cp -f ../banner package/base-files/files/etc/
 
 # 增加制作人
-sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
+# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
 
-#更改固件名称
-sed 's/OpenWrt/ClayMore/g' package/base-files/files/bin/config_generate
+# 更改改机器名称
+sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
 rm -rf package/lean/luci-theme-argon
@@ -33,9 +32,15 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luc
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
-git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
+# git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
+git clone https://github.com/sypopo/luci-theme-atmaterial.git package/lean/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
+git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly.git package/luci-theme-Butterfly
+git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly-dark.git package/luci-theme-Butterfly-dark
+git clone https://github.com/Leo-Jo-My/luci-theme-opentomato.git package/luci-theme-opentomato
+git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
+git clone https://github.com/Leo-Jo-My/luci-theme-argon-mod.git package/luci-theme-argon-mod
+git clone https://github.com/apollo-ng/luci-theme-darkmatter package/luci-theme-darkmatter
 
 #创建自定义配置文件 - OpenWrt-R7800
 
@@ -115,7 +120,7 @@ CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-openclash=y
 EOF
 
-# lienol插件选择:
+# Lean插件选择:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_POSTFIX_TLS is not set
@@ -130,20 +135,98 @@ CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_KERNEL_IPV6_MROUTE is not set
 EOF
 
+# 常用LuCI插件(禁用):
+cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
+CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
+CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
+# CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
+# CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
+# CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
+# CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
+# CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
+# CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
+# CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
+#
+# ssr-plus相关(禁用):
+#
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
+#
+# VPN相关插件(禁用):
+#
+# CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
+# CONFIG_PACKAGE_luci-app-zerotier is not set #Zerotier内网穿透
+# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set #IPSec VPN 服务器
+# CONFIG_PACKAGE_luci-app-pppoe-relay is not set #PPPoE穿透
+# CONFIG_PACKAGE_luci-app-pppoe-server is not set #PPPoE服务器
+# CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set #PPTP VPN 服务器
+# CONFIG_PACKAGE_luci-app-trojan-server is not set #Trojan服务器
+# CONFIG_PACKAGE_luci-app-v2ray-server is not set #V2ray服务器
+# CONFIG_PACKAGE_luci-app-brook-server is not set #brook服务端
+# CONFIG_PACKAGE_luci-app-ssr-libev-server is not set #ssr-libev服务端
+# CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set #ssr-python服务端
+# CONFIG_PACKAGE_luci-app-kcptun is not set #Kcptun客户端
+# CONFIG_PACKAGE_shadowsocksr-libev-server is not set #ssr服务端
+#
+# 文件共享相关(禁用):
+#
+# CONFIG_PACKAGE_luci-app-aria2 is not set #Aria2离线下载
+# CONFIG_PACKAGE_luci-app-minidlna is not set #miniDLNA服务
+# CONFIG_PACKAGE_luci-app-kodexplorer is not set #可到私有云
+# CONFIG_PACKAGE_luci-app-filebrowser is not set #File Browser私有云
+# CONFIG_PACKAGE_luci-app-fileassistant is not set #文件助手
+# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
+# CONFIG_PACKAGE_luci-app-samba is not set #网络共享
+# CONFIG_PACKAGE_autosamba is not set #网络共享
+# CONFIG_PACKAGE_samba36-server is not set #网络共享
+EOF
+
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
+CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
+# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
+CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
+CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
+CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
+# CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
+CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
+CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
+CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
+# CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
+# CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
+# CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
+# CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
+# CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
+CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
+CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
 # LuCI主题:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
-# CONFIG_PACKAGE_luci-theme-netgear is not set
-# CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
-# CONFIG_PACKAGE_luci-theme-argon-light-mod is not set
-# CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 CONFIG_PACKAGE_luci-theme-atmaterial=y
+# CONFIG_PACKAGE_luci-theme-atmaterial is not set
+CONFIG_PACKAGE_luci-theme-bootstrap=y
+CONFIG_PACKAGE_luci-theme-material=y
+# CONFIG_PACKAGE_luci-theme-netgear is not set
 CONFIG_PACKAGE_luci-theme-rosy=y
+CONFIG_PACKAGE_luci-theme-Butterfly=y
+CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
+CONFIG_PACKAGE_luci-theme-opentomato=y
+CONFIG_PACKAGE_luci-theme-opentomcat=y
+CONFIG_PACKAGE_luci-theme-argon-mod=y
+CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
 
 # 常用软件包:
