@@ -214,6 +214,7 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
+# CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 EOF
 
 # 常用软件包:
