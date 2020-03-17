@@ -139,7 +139,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
-CONFIG_UnblockNeteaseMusic_NodeJS=y #解锁网易云灰色歌曲
+# CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
