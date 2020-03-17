@@ -9,6 +9,7 @@
 
 # 定制默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 
 # sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
