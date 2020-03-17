@@ -135,8 +135,8 @@ EOF
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
-# CONFIG_PACKAGE_luci-app-unblockmusic is not set #解锁网易云灰色歌曲
-# CONFIG_UnblockNeteaseMusic_Go is not set #解锁网易云灰色歌曲
+CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
+CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
@@ -213,7 +213,7 @@ CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-# CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
+CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
