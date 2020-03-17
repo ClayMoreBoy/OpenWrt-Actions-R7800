@@ -10,6 +10,9 @@
 # 定制默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
+curl -fsSL https://github.com/ClayMoreBoy/dotfiles/raw/master/.bashrc >> ~/package/kernel/mac80211/files/lib/wifi/mac80211.sh
+curl -fsSL https://github.com/ClayMoreBoy/dotfiles/raw/master/.bashrc >> package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
 
 # WIFI名为MAC后六位
