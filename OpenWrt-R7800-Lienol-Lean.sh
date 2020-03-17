@@ -10,15 +10,12 @@
 # 定制默认IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-#取掉默认主题
-sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
-
 sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
 
-#WIFI名为MAC后六位
-rm -f package/kernel/mac80211/files/lib/wifi/mac80211.sh
-cp ../mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# WIFI名为MAC后六位
+# rm -f package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# cp ../mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # uci set wireless.@wifi-iface[0].ssid=OpenWrt_$(cat /sys/class/ieee80211/phy0/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
 # uci commit
@@ -26,8 +23,8 @@ cp ../mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # 增加制作人
 sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
 
-#更改固件名称
-sed -i 's/OpenWrt/ClayMore/g' package/base-files/files/etc/init.d/system
+# 更改固件名称
+# sed -i 's/OpenWrt/ClayMore/g' package/base-files/files/etc/init.d/system
 
 # 替换默认Argon主题
 rm -rf package/lean/luci-theme-argon
@@ -89,7 +86,6 @@ EOF
 cat >> .config <<EOF
 # CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 # CONFIG_PACKAGE_ipv6helper=y
-# CONFIG_IPV6 is not set
 EOF
 
 # 多文件系统支持:
@@ -116,7 +112,7 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 # CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
-# CONFIG_PACKAGE_luci-app-openclash=y
+# CONFIG_PACKAGE_luci-app-openclash is not set
 EOF
 
 # Lienol插件选择:
@@ -139,7 +135,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
-# CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
+CONFIG_UnblockNeteaseMusic_NodeJS=y #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
@@ -151,34 +147,20 @@ CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 #
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
-CONFIG_PACKAGE_kcptun-client=y
-CONFIG_PACKAGE_chinadns-ng=y
-CONFIG_PACKAGE_haproxy=y
-CONFIG_PACKAGE_v2ray=y
-CONFIG_PACKAGE_v2ray-plugin=y
-CONFIG_PACKAGE_simple-obfs=y
-CONFIG_PACKAGE_trojan=y
-CONFIG_PACKAGE_brook=y
-CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_shadowsocks-libev-config=y
-CONFIG_PACKAGE_shadowsocks-libev-ss-local=y
-CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
-CONFIG_PACKAGE_shadowsocksr-libev-alt=y
-CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
 #
 # VPN相关插件(禁用):
 #
@@ -234,13 +216,14 @@ EOF
 
 # LuCI主题:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-theme-argon is not set
+CONFIG_PACKAGE_luci-theme-atmaterial=y
+CONFIG_PACKAGE_luci-theme-rosy=y
+CONFIG_PACKAGE_luci-theme-material=y
+CONFIG_PACKAGE_luci-theme-argon=y
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
 # CONFIG_PACKAGE_luci-theme-argon-light-mod is not set
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
-CONFIG_PACKAGE_luci-theme-atmaterial=y
-CONFIG_PACKAGE_luci-theme-rosy=y
 EOF
 
 # 常用软件包:
