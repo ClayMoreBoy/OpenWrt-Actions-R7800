@@ -8,20 +8,21 @@
 #=================================================
 
 # 定制默认IP
-# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
-curl -fsSL https://raw.githubusercontent.com/ClayMoreBoy/OpenWrt-R7800-Actions/master/mac80211.sh >> package/kernel/mac80211/files/lib/wifi/mac80211.sh
+cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
 
-# uci set wireless.@wifi-iface[0].ssid=OpenWrt_$(cat /sys/class/ieee80211/phy0/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
-# uci commit
+#替换banner
+rm -rf package/base-files/files/etc/banner
+cp -f ../banner package/base-files/files/etc/
 
 # 增加制作人
-sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
+# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
 
-# 更改固件名称
-# sed -i 's/OpenWrt/ClayMore/g' package/base-files/files/etc/init.d/system
+# 更改改机器名称
+sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
 rm -rf package/lean/luci-theme-argon
@@ -32,7 +33,7 @@ git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 # git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
+git clone https://github.com/sypopo/luci-theme-atmaterial.git package/lean/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
 git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly.git package/luci-theme-Butterfly
 git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly-dark.git package/luci-theme-Butterfly-dark
