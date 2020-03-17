@@ -15,18 +15,15 @@ sed -i 's/lienol/ClayMore/g' /etc/opkg/distfeeds.conf
 rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
 
-# sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
-# sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
-
-#WIFI名为MAC后六位
-# rm -f package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# cp ../mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# WIFI名为MAC后六位
+rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
+cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
 
 # 增加制作人
-sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
+# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
 
-#更改固件名称 失效
-sed -i 's/OpenWrt/ClayMore/g' package/base-files/files/etc/init.d/system
+# 更改改机器名称
+sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
 # rm -rf package/lean/luci-theme-argon
