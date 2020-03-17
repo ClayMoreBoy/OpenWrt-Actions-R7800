@@ -11,7 +11,7 @@ name: OpenWrt-R7800-Lienol-Lean
 on:
 # 定时触发
   schedule:
-    - cron: 0 18 * * *
+    - cron: 0 01 * * *
 
 # release触发
 #  release:
