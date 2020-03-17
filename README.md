@@ -12,11 +12,11 @@
 --------------
 
 ### 编译状态
-[![OpenWrt-R7800-Lienol-Lean](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/workflows/OpenWrt-R7800-Lienol-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions?query=workflow%3AOpenWrt-R7800-Lienol-Lean)
+[![OpenWrt-R7800-Lienol-Lean](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Lienol-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Lienol-Lean)
 
-[![OpenWrt-R7800-Lean](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/workflows/OpenWrt-R7800-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions?query=workflow%3AOpenWrt-R7800-Lean)
+[![OpenWrt-R7800-Lean](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Lean)
 
-[![OpenWrt-R7800-Dev](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/workflows/OpenWrt-R7800-Dev/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions?query=workflow%3AOpenWrt-R7800-Dev)
+[![OpenWrt-R7800-Dev](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Dev/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Dev)
 
 仅编译网件R7800的路由器固件，原则上不接受个性化定制。
 
@@ -35,7 +35,7 @@
 
 ### 固件下载
 #### 最新固件下载
-网件r7800：[点此下载](https://github.com/ClayMoreBoy/OpenWrt-R7800-Actions/actions)
+网件r7800：[点此下载](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions)
 
 - 请注意：你需要点击左则Workflows列表`OpenWrt-R7800-*`按钮进入页面，然后点击`OpenWrt_Firmware_R7800_*`进行下载。
 
