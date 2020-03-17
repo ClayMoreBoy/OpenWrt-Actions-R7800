@@ -134,9 +134,9 @@ EOF
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
-CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-unblockneteasemusic-go=y #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y #解锁网易云灰色歌曲
+# CONFIG_PACKAGE_luci-app-unblockmusic is not set #解锁网易云灰色歌曲
+# CONFIG_UnblockNeteaseMusic_Go is not set #解锁网易云灰色歌曲
+# CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 # CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
@@ -148,14 +148,14 @@ CONFIG_PACKAGE_luci-app-unblockneteasemusic-mini=y #解锁网易云灰色歌曲
 #
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
@@ -167,15 +167,15 @@ CONFIG_PACKAGE_chinadns-ng=y
 CONFIG_PACKAGE_haproxy=y
 # CONFIG_PACKAGE_v2ray is not set
 # CONFIG_PACKAGE_v2ray-plugin is not set
-CONFIG_PACKAGE_simple-obfs=y
-# CONFIG_PACKAGE_trojan=y
-# CONFIG_PACKAGE_brook=y
+# CONFIG_PACKAGE_simple-obfs is not set
+# CONFIG_PACKAGE_trojan is not set
+# CONFIG_PACKAGE_brook is not set
 CONFIG_PACKAGE_ipt2socks=y
 # CONFIG_PACKAGE_shadowsocks-libev-config is not set
 # CONFIG_PACKAGE_shadowsocks-libev-ss-local is not set
-CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
+# CONFIG_PACKAGE_shadowsocks-libev-ss-redir is not set
 CONFIG_PACKAGE_shadowsocksr-libev-alt=y
-CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
+# CONFIG_PACKAGE_shadowsocksr-libev-ssr-local is not set
 #
 # VPN相关插件(禁用):
 #
