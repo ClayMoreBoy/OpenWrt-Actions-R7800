@@ -17,10 +17,11 @@ sed -i 's/ autosamba//g' target/linux/ipq806x/Makefile
 # sed -i 's/ v2ray//g' target/linux/ipq806x/Makefile
 
 #WIFI名为MAC后六位
-sed -i "s/OpenWrt/ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g" package/kernel/mac80211/files/lib/wifi/mac80211.sh
+rm -f package/kernel/mac80211/files/lib/wifi/mac80211.sh
+cp ../mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
-uci set wireless.@wifi-iface[0].ssid=OpenWrt_$(cat /sys/class/ieee80211/phy0/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
-uci commit
+# uci set wireless.@wifi-iface[0].ssid=OpenWrt_$(cat /sys/class/ieee80211/phy0/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
+# uci commit
 
 # 增加制作人
 sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
