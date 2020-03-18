@@ -20,7 +20,7 @@ cp -f ../banner package/base-files/files/etc/
 
 # 自定义固件
 rm -rf package/default-settings/files/zzz-default-settings
-cp -f ../zzz-default-settings-lean package/default-settings/files/zzz-default-settings
+cp -f ../zzz-default-settings-lean package/lean/default-settings/files/zzz-default-settings
 
 # 增加制作人
 # sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
