@@ -8,29 +8,29 @@
 #=================================================
 
 # 定制默认IP
-sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # root默认密码password
-sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
-sed -i 's/lienol//g' /etc/opkg/distfeeds.conf
+# sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
+# sed -i 's/lienol//g' /etc/opkg/distfeeds.conf
 
 # 删除状况页upnp和ddns状态模块
-rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
+# rm -f feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index/upnp.htm
+# rm -f feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index/ddns.htm
 
 # WIFI名为MAC后六位
-rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
-cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
+# rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
 
 #替换banner
 rm -rf package/base-files/files/etc/banner
 cp -f ../banner package/base-files/files/etc/
 
 # 增加制作人
-# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
+sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
 
 # 更改改机器名称
-sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
+# sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
 # rm -rf package/lean/luci-theme-argon
