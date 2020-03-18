@@ -166,15 +166,15 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks is not set
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
 #
 # VPN相关插件(禁用):
@@ -200,7 +200,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
 # CONFIG_PACKAGE_luci-app-kodexplorer is not set #可到私有云
 # CONFIG_PACKAGE_luci-app-filebrowser is not set #File Browser私有云
 # CONFIG_PACKAGE_luci-app-fileassistant is not set #文件助手
-CONFIG_PACKAGE_luci-app-vsftpd=y #FTP 服务器
+# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
 # CONFIG_PACKAGE_luci-app-samba is not set #网络共享
 # CONFIG_PACKAGE_autosamba is not set #网络共享
 # CONFIG_PACKAGE_samba36-server is not set #网络共享
@@ -216,9 +216,9 @@ CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
-CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
+# CONFIG_DEFAULT_luci-app-vlmcsd is not set #KMS激活服务器
+# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-ddns is not set #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
 # CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
