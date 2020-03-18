@@ -102,6 +102,7 @@ detect_mac80211() {
 			set wireless.radio${devidx}.type=mac80211
 			set wireless.radio${devidx}.channel=${channel}
 			set wireless.radio${devidx}.hwmode=11${mode_band}
+			set wireless.radio${devidx}.country=US #指定国家
 			${dev_id}
 			${ht_capab}
 			set wireless.radio${devidx}.disabled=1
@@ -110,7 +111,7 @@ detect_mac80211() {
 			set wireless.default_radio${devidx}.device=radio${devidx}
 			set wireless.default_radio${devidx}.network=lan
 			set wireless.default_radio${devidx}.mode=ap
-			set wireless.default_radio${devidx}.ssid=R7800_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
+			set wireless.default_radio${devidx}.ssid=ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
 			set wireless.default_radio${devidx}.encryption=none
 EOF
 		uci -q commit wireless
