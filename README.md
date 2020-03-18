@@ -2,12 +2,11 @@
 >固件来源：
 [![Lean](https://img.shields.io/badge/Form-Lean-brightgreen.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede) [![Lienol](https://img.shields.io/badge/Form-Lienol-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt)
 
-R7800 默认配置
-
-初始管理地址:192.168.1.1
-初始管理用户:root
-初始管理密码:password   (路由 & SSH)
-SSH User:root
+## R7800 默认配置
+### 初始管理地址:192.168.1.1
+### 初始管理用户:root
+### 初始管理密码:password   (路由 & SSH)
+### SSH User:root
 --------------
 * [编译状态](#编译状态)
 * [更新建议](#更新建议)
