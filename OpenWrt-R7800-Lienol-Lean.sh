@@ -10,6 +10,12 @@
 # 定制默认IP
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
+#取掉默认主题
+# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+
+#
+sed -i 's/LuCI Master/LuCI-R7800-ClayMoreBoy/g' feeds/luci/luci.mk
+
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
 cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
