@@ -235,12 +235,11 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-atmaterial=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
+# CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 CONFIG_PACKAGE_luci-theme-rosy=y
 CONFIG_PACKAGE_luci-theme-Butterfly=y
-CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
-CONFIG_PACKAGE_luci-theme-opentomato=y
-CONFIG_PACKAGE_luci-theme-opentomcat=y
+# CONFIG_PACKAGE_luci-theme-Butterfly-dark is not set
 CONFIG_PACKAGE_luci-theme-argon-mod=y
 CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
