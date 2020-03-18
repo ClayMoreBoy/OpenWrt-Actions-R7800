@@ -122,7 +122,6 @@ EOF
 
 # Lean插件选择:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-ssr-plus=y
 # CONFIG_POSTFIX_TLS is not set
 # CONFIG_POSTFIX_SASL is not set
 # CONFIG_POSTFIX_LDAP is not set
@@ -153,11 +152,11 @@ CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
 #
 # VPN相关插件(禁用):
@@ -183,7 +182,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 # CONFIG_PACKAGE_luci-app-kodexplorer is not set #可到私有云
 # CONFIG_PACKAGE_luci-app-filebrowser is not set #File Browser私有云
 # CONFIG_PACKAGE_luci-app-fileassistant is not set #文件助手
-# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
+CONFIG_PACKAGE_luci-app-vsftpd=y #FTP 服务器
 # CONFIG_PACKAGE_luci-app-samba is not set #网络共享
 # CONFIG_PACKAGE_autosamba is not set #网络共享
 # CONFIG_PACKAGE_samba36-server is not set #网络共享
