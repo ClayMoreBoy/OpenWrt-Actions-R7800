@@ -151,17 +151,17 @@ CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 #
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks is not set
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
@@ -189,7 +189,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
 # CONFIG_PACKAGE_luci-app-kodexplorer is not set #可到私有云
 # CONFIG_PACKAGE_luci-app-filebrowser is not set #File Browser私有云
 # CONFIG_PACKAGE_luci-app-fileassistant is not set #文件助手
-# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
+CONFIG_PACKAGE_luci-app-vsftpd=y #FTP 服务器
 # CONFIG_PACKAGE_luci-app-samba is not set #网络共享
 # CONFIG_PACKAGE_autosamba is not set #网络共享
 # CONFIG_PACKAGE_samba36-server is not set #网络共享
