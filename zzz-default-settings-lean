@@ -38,9 +38,8 @@ sed -i 's/http/https/g' /etc/opkg/distfeeds.conf
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 
 #默认关闭IPV6
-uci set dhcp.lan.ra=disabled
-uci set dhcp.lan.dhcpv6=disabled
-uci commit dhcp
+sed -i '/set dhcp.lan.dhcpv6/d' /odhcpd/files/odhcpd.defaults
+sed -i '/set dhcp.lan.ra/d' /odhcpd/files/odhcpd.defaults
 
 #设置默认管理IP地址
 uci set network.lan.ipaddr='10.0.0.1'
