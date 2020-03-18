@@ -1,6 +1,4 @@
 #!/bin/sh
-. /lib/netifd/mac80211.sh
-
 append DRIVERS "mac80211"
 
 lookup_phy() {
@@ -11,8 +9,11 @@ lookup_phy() {
 	local devpath
 	config_get devpath "$device" path
 	[ -n "$devpath" ] && {
-		phy="$(mac80211_path_to_phy "$devpath")"
-		[ -n "$phy" ] && return
+		for phy in $(ls /sys/class/ieee80211 2>/dev/null); do
+			case "$(readlink -f /sys/class/ieee80211/$phy/device)" in
+				*$devpath) return;;
+			esac
+		done
 	}
 
 	local macaddr="$(config_get "$device" macaddr | tr 'A-Z' 'a-z')"
@@ -90,8 +91,16 @@ detect_mac80211() {
 
 		[ -n "$htmode" ] && ht_capab="set wireless.radio${devidx}.htmode=$htmode"
 
-		path="$(mac80211_phy_to_path "$dev")"
+		if [ -x /usr/bin/readlink -a -h /sys/class/ieee80211/${dev} ]; then
+			path="$(readlink -f /sys/class/ieee80211/${dev}/device)"
+		else
+			path=""
+		fi
 		if [ -n "$path" ]; then
+			path="${path##/sys/devices/}"
+			case "$path" in
+				platform*/pci*) path="${path##platform/}";;
+			esac
 			dev_id="set wireless.radio${devidx}.path='$path'"
 		else
 			dev_id="set wireless.radio${devidx}.macaddr=$(cat /sys/class/ieee80211/${dev}/macaddress)"
@@ -105,14 +114,14 @@ detect_mac80211() {
 			set wireless.radio${devidx}.country=US #指定国家
 			${dev_id}
 			${ht_capab}
-			set wireless.radio${devidx}.disabled=1
+			set wireless.radio${devidx}.disabled=0
 
 			set wireless.default_radio${devidx}=wifi-iface
 			set wireless.default_radio${devidx}.device=radio${devidx}
 			set wireless.default_radio${devidx}.network=lan
 			set wireless.default_radio${devidx}.mode=ap
-			set wireless.default_radio${devidx}.ssid=ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
-			set wireless.default_radio${devidx}.encryption=none #wifi加密方式，没有是none 
+			set wireless.default_radio${devidx}.ssid=R7800_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
+			set wireless.default_radio${devidx}.encryption=psk2 #wifi加密方式，没有是none
 			set wireless.default_radio${devidx}.key=password #wifi密码
 EOF
 		uci -q commit wireless
