@@ -14,7 +14,7 @@
 # sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
 #
-sed -i 's/Master-Lienol/-ClayMoreBoy/g' feeds/luci/luci.mk
+sed -i 's/Master-Lienol/-R7800-ClayMoreBoy/g' feeds/luci/luci.mk
 
 # root默认密码password
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
