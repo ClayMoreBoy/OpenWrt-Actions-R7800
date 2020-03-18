@@ -125,7 +125,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt-bin
+        name: OpenWrt-Bin-Dev
         path: openwrt/bin
 
     - name: 整理文件
