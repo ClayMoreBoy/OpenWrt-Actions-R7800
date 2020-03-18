@@ -112,7 +112,8 @@ detect_mac80211() {
 			set wireless.default_radio${devidx}.network=lan
 			set wireless.default_radio${devidx}.mode=ap
 			set wireless.default_radio${devidx}.ssid=ClayMore_$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)
-			set wireless.default_radio${devidx}.encryption=none
+			set wireless.default_radio${devidx}.encryption=none #wifi加密方式，没有是none 
+			set wireless.default_radio${devidx}.key=password #wifi密码
 EOF
 		uci -q commit wireless
 
