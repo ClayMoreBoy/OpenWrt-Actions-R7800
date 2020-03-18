@@ -1,4 +1,4 @@
-## Netgear R7800路由器固件自动编译[![OpenWrt](https://img.shields.io/badge/for-OpenWrt-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/openwrt/openwrt)
+## Netgear R7800路由器固件自动编译 [![OpenWrt](https://img.shields.io/badge/for-OpenWrt-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/openwrt/openwrt)
 >固件来源：
 [![Lean](https://img.shields.io/badge/Form-Lean-brightgreen.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede) [![Lienol](https://img.shields.io/badge/Form-Lienol-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt)
 
