@@ -19,7 +19,7 @@ rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
 
 ln -sf /sbin/ip /usr/bin/ip
 
-sed -i '/ClayMore/d' /etc/opkg/distfeeds.conf
+sed -i '/Lienol/d' /etc/opkg/distfeeds.conf
 sed -i 's/downloads.openwrt.org/openwrt.proxy.ustclug.org/g' /etc/opkg/distfeeds.conf
 sed -i 's/http/https/g' /etc/opkg/distfeeds.conf
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
@@ -28,9 +28,8 @@ sed -i "s/# //g" /etc/opkg/distfeeds.conf
 sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 
 #默认关闭IPV6
-uci set dhcp.lan.ra=disabled
-uci set dhcp.lan.dhcpv6=disabled
-uci commit dhcp
+sed -i '/set dhcp.lan.dhcpv6/d' /odhcpd/files/odhcpd.defaults
+sed -i '/set dhcp.lan.ra/d' /odhcpd/files/odhcpd.defaults
 
 uci set dhcp.@dnsmasq[0].localservice=0
 uci set dhcp.@dnsmasq[0].nonwildcard=0
