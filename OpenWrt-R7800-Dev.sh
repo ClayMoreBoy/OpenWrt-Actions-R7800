@@ -31,7 +31,7 @@ rm -rf package/default-settings/files/zzz-default-settings
 cp -f ../zzz-default-settings package/default-settings/files/
 
 # 增加制作人
-sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
+# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
 
 # 更改改机器名称
 # sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
