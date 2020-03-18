@@ -8,7 +8,7 @@
 #=================================================
 
 # 定制默认IP
-sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -18,11 +18,15 @@ cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
 rm -rf package/base-files/files/etc/banner
 cp -f ../banner package/base-files/files/etc/
 
+# 自定义固件
+rm -rf package/default-settings/files/zzz-default-settings
+cp -f ../zzz-default-settings-lean package/default-settings/files/zzz-default-settings
+
 # 增加制作人
 # sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
 
 # 更改改机器名称
-sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
+# sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
 rm -rf package/lean/luci-theme-argon
@@ -31,7 +35,7 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luc
 # 添加第三方软件包
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
+# git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/sypopo/luci-theme-atmaterial.git package/lean/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
@@ -88,9 +92,8 @@ EOF
 
 # IPv6支持:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# CONFIG_PACKAGE_ipv6helper=y
-# CONFIG_IPV6 is not set
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
+# CONFIG_PACKAGE_ipv6helper is not set
 EOF
 
 # 多文件系统支持:
@@ -116,8 +119,8 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
-# CONFIG_PACKAGE_luci-app-openclash=y
+# CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
+# CONFIG_PACKAGE_luci-app-openclash is not set
 EOF
 
 # Lean插件选择:
@@ -215,7 +218,6 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-atmaterial=y
-# CONFIG_PACKAGE_luci-theme-atmaterial is not set
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-netgear is not set
