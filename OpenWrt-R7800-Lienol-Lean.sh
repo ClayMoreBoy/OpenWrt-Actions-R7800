@@ -92,8 +92,8 @@ EOF
 
 # IPv6支持:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-# CONFIG_PACKAGE_ipv6helper=y
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
+# CONFIG_PACKAGE_ipv6helper is not set
 EOF
 
 # 多文件系统支持:
@@ -119,7 +119,7 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-# CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
+# CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-openclash is not set
 EOF
 
@@ -226,7 +226,6 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-atmaterial=y
-# CONFIG_PACKAGE_luci-theme-atmaterial is not set
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-netgear is not set
