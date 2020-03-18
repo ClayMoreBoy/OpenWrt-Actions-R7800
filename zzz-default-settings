@@ -30,8 +30,6 @@ sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999
 #默认关闭IPV6
 uci set dhcp.lan.ra=disabled
 uci set dhcp.lan.dhcpv6=disabled
-uci set dhcp.lan.ra_management=0
-uci set dhcp.lan.ra_default=1
 uci commit dhcp
 
 uci set dhcp.@dnsmasq[0].localservice=0
@@ -39,10 +37,10 @@ uci set dhcp.@dnsmasq[0].nonwildcard=0
 uci commit dhcp
 
 #设置默认管理IP地址
-uci set network.lan.ipaddr=10.0.0.1
-uci set network.lan.netmask=255.255.255.0
-uci set network.lan.delegate=0
-uci set network.wan.delegate=0
+uci set network.lan.ipaddr='10.0.0.1'
+uci set network.lan.netmask='255.255.255.0'
+uci set network.lan.delegate='0'
+uci set network.wan.delegate='0'
 uci commit network
 
 sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
@@ -64,6 +62,3 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 rm -rf /tmp/luci-*
 
 exit 0
-
-
-
