@@ -1,9 +1,11 @@
 #!/bin/sh
 
 uci set luci.main.lang=zh_cn
-uci set luci.main.mediaurlbase=/luci-static/bootstrap
+uci set luci.main.mediaurlbase=/luci-static/material
 uci commit luci
 
+#固件名称
+uci set system.@system[0].hostname='R7800'
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
@@ -11,29 +13,36 @@ uci commit system
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
+rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
+rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
+rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
+
 ln -sf /sbin/ip /usr/bin/ip
 
-sed -i '/lienol/d' /etc/opkg/distfeeds.conf
-#sed -i 's/downloads.openwrt.org/openwrt.proxy.ustclug.org/g' /etc/opkg/distfeeds.conf
-#sed -i 's/http/https/g' /etc/opkg/distfeeds.conf
+sed -i '/ClayMore/d' /etc/opkg/distfeeds.conf
+sed -i 's/downloads.openwrt.org/openwrt.proxy.ustclug.org/g' /etc/opkg/distfeeds.conf
+sed -i 's/http/https/g' /etc/opkg/distfeeds.conf
 sed -i "s/# //g" /etc/opkg/distfeeds.conf
 
-#sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
+#默认管理密码password
+sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' /etc/shadow
 
-#uci set dhcp.lan.ra='server'
-#uci set dhcp.lan.dhcpv6='server'
-#uci set dhcp.lan.ra_management='1'
-#uci set dhcp.lan.ra_default='1'
-#uci commit dhcp
+#默认关闭IPV6
+uci set dhcp.lan.ra=disabled
+uci set dhcp.lan.dhcpv6=disabled
+uci set dhcp.lan.ra_management='0'
+uci set dhcp.lan.ra_default='1'
+uci commit dhcp
 
 uci set dhcp.@dnsmasq[0].localservice=0
 uci set dhcp.@dnsmasq[0].nonwildcard=0
 uci commit dhcp
 
-#设置IP
-#uci set network.lan.ipaddr='192.168.119.10'
-#uci set network.lan.netmask='255.255.255.0'
-#uci commit network
+#设置默认管理IP地址
+uci set network.lan.ipaddr='10.0.0.1'
+uci set network.lan.netmask='255.255.255.0'
+uci set network.lan.delegate='0'
+uci commit network
 
 sed -i '/REDIRECT --to-ports 53/d' /etc/firewall.user
 echo "iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53" >> /etc/firewall.user
