@@ -240,6 +240,8 @@ CONFIG_PACKAGE_luci-theme-material=y
 CONFIG_PACKAGE_luci-theme-rosy=y
 CONFIG_PACKAGE_luci-theme-Butterfly=y
 # CONFIG_PACKAGE_luci-theme-Butterfly-dark is not set
+# CONFIG_PACKAGE_luci-theme-opentomato is not set
+# CONFIG_PACKAGE_luci-theme-opentomcat is not set
 CONFIG_PACKAGE_luci-theme-argon-mod=y
 CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
