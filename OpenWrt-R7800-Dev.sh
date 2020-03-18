@@ -156,12 +156,12 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
-# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
+CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
 CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
@@ -205,7 +205,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
-# CONFIG_DEFAULT_luci-app-vlmcsd is not set #KMS激活服务器
+CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
 CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
