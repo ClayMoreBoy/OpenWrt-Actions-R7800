@@ -10,6 +10,12 @@
 # 定制默认IP
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
+#取掉默认主题
+# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+
+#
+sed -i 's/Master-Lienol/-ClayMoreBoy/g' feeds/luci/luci.mk
+
 # root默认密码password
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 # sed -i 's/lienol//g' /etc/opkg/distfeeds.conf
