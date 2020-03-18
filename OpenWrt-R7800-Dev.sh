@@ -41,7 +41,7 @@ sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRI
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 添加第三方软件包
-# git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
+git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 # git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
