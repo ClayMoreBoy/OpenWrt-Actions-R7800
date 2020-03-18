@@ -19,12 +19,16 @@
 # rm -f feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index/ddns.htm
 
 # WIFI名为MAC后六位
-# rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
-# cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
+rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
+cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
 
-#替换banner
+# 替换banner
 rm -rf package/base-files/files/etc/banner
 cp -f ../banner package/base-files/files/etc/
+
+# 自定义固件
+rm -rf package/default-settings/files/zzz-default-settings
+cp -f ../zzz-default-settings package/default-settings/files/
 
 # 增加制作人
 sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt SNAPSHOT Compiled by ClayMoreBoy '\"/g" package/default-settings/files/zzz-default-settings
