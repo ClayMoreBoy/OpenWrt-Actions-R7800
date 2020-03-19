@@ -130,16 +130,6 @@ CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-openclash is not set
 EOF
 
-# Lienol插件选择:
-cat >> .config <<EOF
-# CONFIG_POSTFIX_TLS is not set
-# CONFIG_POSTFIX_SASL is not set
-# CONFIG_POSTFIX_LDAP is not set
-# CONFIG_POSTFIX_CDB is not set
-# CONFIG_POSTFIX_SQLITE is not set
-# CONFIG_POSTFIX_PCRE is not set
-EOF
-
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
@@ -175,7 +165,7 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
 # ssr-plus相关(禁用):
 #
 CONFIG_PACKAGE_luci-app-ssr-plus=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs is not set
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin is not set
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
@@ -210,12 +200,12 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 # CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
 CONFIG_PACKAGE_luci-app-samba=y #网络共享
 CONFIG_PACKAGE_autosamba=y #网络共享
-# CONFIG_PACKAGE_samba36-server is not set #网络共享
+CONFIG_PACKAGE_samba36-server=y #网络共享
 EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
