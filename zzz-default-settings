@@ -5,7 +5,7 @@ uci set luci.main.mediaurlbase=/luci-static/material
 uci commit luci
 
 #固件名称
-uci set system.@system[0].hostname=R7800
+uci set system.@system[0].hostname=Netgear R7800
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
