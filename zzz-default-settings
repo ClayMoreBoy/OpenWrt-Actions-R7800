@@ -13,11 +13,6 @@ uci commit system
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
-rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
-rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
-
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/aria2.lua
 sed -i 's/services/nas/g' /usr/lib/lua/luci/view/aria2/overview_status.htm
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/hd_idle.lua
@@ -29,10 +24,6 @@ sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/p910nd.lua
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/usb_printer.lua
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/xunlei.lua
 sed -i 's/services/nas/g'  /usr/lib/lua/luci/view/minidlna_status.htm
-sed -i 's/\"vpn\"/\"services\"/g' /usr/lib/lua/luci/controller/passwall.lua
-sed -i 's/\"network\"/\"services\"/g' /usr/lib/lua/luci/controller/flowoffload.lua
-sed -i 's/\"network\"/\"services\"/g' /usr/lib/lua/luci/controller/appfilter.lua
-sed -i 's/\"services\"/\"network\"/g' /usr/lib/lua/luci/controller/upnp.lua
 
 ln -sf /sbin/ip /usr/bin/ip
 
@@ -68,7 +59,7 @@ sed -i '/set wireless.radio${devidx}.disabled/d' /lib/wifi/mac80211.sh
 wifi up
 
 sed -i '/DISTRIB_REVISION/d' /etc/openwrt_release
-echo "DISTRIB_REVISION='V20.3.19'" >> /etc/openwrt_release
+echo "DISTRIB_REVISION='V20.3.18'" >> /etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
 echo "DISTRIB_DESCRIPTION='OpenWrt '" >> /etc/openwrt_release
 
