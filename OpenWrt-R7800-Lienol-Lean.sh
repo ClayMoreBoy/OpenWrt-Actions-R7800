@@ -11,10 +11,10 @@
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 #取掉默认主题
-# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
 #
-sed -i 's/LuCI Master/LuCI-R7800-ClayMoreBoy/g' feeds/luci/luci.mk
+sed -i 's/LuCI Master/LuCI-ClayMoreBoy/g' feeds/luci/luci.mk
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -39,7 +39,7 @@ rm -rf package/lean/luci-theme-argon
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 添加第三方软件包
-git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
+# git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 # git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
@@ -97,10 +97,10 @@ EOF
 # EOF
 
 # IPv6支持:
-cat >> .config <<EOF
+# cat >> .config <<EOF
 # CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
 # CONFIG_PACKAGE_ipv6helper is not set
-EOF
+# EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
@@ -123,7 +123,7 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
+# CONFIG_PACKAGE_luci-app-oaf is not set #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 # CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
@@ -225,25 +225,25 @@ CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
 # CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
-CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
+# CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
 # LuCI主题:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-theme-argon=y
-CONFIG_PACKAGE_luci-theme-atmaterial=y
-CONFIG_PACKAGE_luci-theme-bootstrap=y
+# CONFIG_PACKAGE_luci-theme-argon=y
+# CONFIG_PACKAGE_luci-theme-atmaterial=y
+# CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
-CONFIG_PACKAGE_luci-theme-rosy=y
-CONFIG_PACKAGE_luci-theme-Butterfly=y
+# CONFIG_PACKAGE_luci-theme-rosy=y
+# CONFIG_PACKAGE_luci-theme-Butterfly=y
 # CONFIG_PACKAGE_luci-theme-Butterfly-dark is not set
 # CONFIG_PACKAGE_luci-theme-opentomato is not set
 # CONFIG_PACKAGE_luci-theme-opentomcat is not set
-CONFIG_PACKAGE_luci-theme-argon-mod=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
+# CONFIG_PACKAGE_luci-theme-argon-mod=y
+# CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
 
 # 常用软件包:
