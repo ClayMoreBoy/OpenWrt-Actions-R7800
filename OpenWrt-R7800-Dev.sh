@@ -227,7 +227,7 @@ EOF
 # LuCI主题:
 cat >> .config <<EOF
 # CONFIG_LUCI_CSSTIDY is not set #修复argon主题图标无法显示
-CONFIG_PACKAGE_luci-theme-argon=y
+# CONFIG_PACKAGE_luci-theme-argon is not set
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 CONFIG_PACKAGE_luci-theme-openwrt=y
