@@ -220,7 +220,7 @@ CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
 # CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
-CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
+# CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 EOF
 
@@ -231,7 +231,7 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 CONFIG_PACKAGE_luci-theme-openwrt=y
-CONFIG_PACKAGE_luci-theme-rosy=y
+# CONFIG_PACKAGE_luci-theme-rosy=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 EOF
 
