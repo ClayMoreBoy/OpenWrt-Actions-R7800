@@ -11,10 +11,10 @@
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 #取掉默认主题
-# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
 #
-sed -i 's/Master-Lienol/-R7800-ClayMoreBoy/g' feeds/luci/luci.mk
+sed -i 's/Master-Lienol/-ClayMoreBoy/g' feeds/luci/luci.mk
 
 # root默认密码password
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
@@ -43,7 +43,7 @@ cp -f ../zzz-default-settings package/default-settings/files/
 # git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 添加第三方软件包
-git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
+# git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 # git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 # git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
@@ -228,9 +228,9 @@ EOF
 cat >> .config <<EOF
 # CONFIG_LUCI_CSSTIDY is not set #修复argon主题图标无法显示
 # CONFIG_PACKAGE_luci-theme-argon is not set
-CONFIG_PACKAGE_luci-theme-bootstrap=y
+# CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
-CONFIG_PACKAGE_luci-theme-openwrt=y
+# CONFIG_PACKAGE_luci-theme-openwrt=y
 # CONFIG_PACKAGE_luci-theme-rosy=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 EOF
