@@ -20,10 +20,6 @@ sed -i 's/Master-Lienol/-R7800-ClayMoreBoy/g' feeds/luci/luci.mk
 # sed -i 's/root::0:0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 # sed -i 's/lienol//g' /etc/opkg/distfeeds.conf
 
-# 删除状况页upnp和ddns状态模块
-# rm -f feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index/upnp.htm
-# rm -f feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index/ddns.htm
-
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
 cp -f ../mac80211.sh package/kernel/mac80211/files/lib/wifi/
