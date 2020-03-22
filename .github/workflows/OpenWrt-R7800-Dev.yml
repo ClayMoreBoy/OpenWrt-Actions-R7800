@@ -40,7 +40,7 @@ env:
   REPO_BRANCH: dev-master
   DIY_SH: OpenWrt-R7800-Dev.sh
   FREE_UP_DISK: true
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
