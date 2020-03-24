@@ -42,7 +42,7 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luc
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone -b passwall https://github.com/Lienol/openwrt-package package/luci-app-passwall
-# git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
+git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/sypopo/luci-theme-atmaterial.git package/lean/luci-theme-atmaterial
 git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
@@ -124,10 +124,10 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
+# CONFIG_PACKAGE_luci-app-oaf is not set #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
-# CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardHome去广告服务
+CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-openclash is not set
 EOF
 
@@ -221,23 +221,24 @@ CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
+CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
 EOF
 
 # LuCI主题:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-theme-argon=y
-# CONFIG_PACKAGE_luci-theme-atmaterial=y
-# CONFIG_PACKAGE_luci-theme-bootstrap=y
+# CONFIG_PACKAGE_luci-theme-argon is not set
+# CONFIG_PACKAGE_luci-theme-atmaterial is not set
+# CONFIG_PACKAGE_luci-theme-bootstrap is not set
 CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
-# CONFIG_PACKAGE_luci-theme-rosy=y
-# CONFIG_PACKAGE_luci-theme-Butterfly=y
+# CONFIG_PACKAGE_luci-theme-rosy is not set
+# CONFIG_PACKAGE_luci-theme-Butterfly is not set
 # CONFIG_PACKAGE_luci-theme-Butterfly-dark is not set
 # CONFIG_PACKAGE_luci-theme-opentomato is not set
 # CONFIG_PACKAGE_luci-theme-opentomcat is not set
-# CONFIG_PACKAGE_luci-theme-argon-mod=y
-# CONFIG_PACKAGE_luci-theme-darkmatter=y
+# CONFIG_PACKAGE_luci-theme-argon-mod is not set
+# CONFIG_PACKAGE_luci-theme-darkmatter is not set
 EOF
 
 # 常用软件包:
