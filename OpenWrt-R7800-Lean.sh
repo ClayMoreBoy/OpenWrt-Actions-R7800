@@ -95,10 +95,10 @@ EOF
 # EOF
 
 # IPv6支持:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
-# CONFIG_PACKAGE_ipv6helper is not set
-# EOF
+cat >> .config <<EOF
+CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+CONFIG_PACKAGE_ipv6helper=y
+EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
@@ -111,13 +111,13 @@ EOF
 # EOF
 
 # USB3.0支持:
-# cat >> .config <<EOF
-# CONFIG_PACKAGE_kmod-usb-ohci=y
-# CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-# CONFIG_PACKAGE_kmod-usb2=y
-# CONFIG_PACKAGE_kmod-usb2-pci=y
-# CONFIG_PACKAGE_kmod-usb3=y
-# EOF
+cat >> .config <<EOF
+CONFIG_PACKAGE_kmod-usb-ohci=y
+CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+CONFIG_PACKAGE_kmod-usb2=y
+CONFIG_PACKAGE_kmod-usb2-pci=y
+CONFIG_PACKAGE_kmod-usb3=y
+EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
@@ -144,8 +144,6 @@ CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
 CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
-# CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
-# CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
 CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
 CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
@@ -167,7 +165,6 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 # VPN相关插件(禁用):
 #
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
-# CONFIG_PACKAGE_luci-app-zerotier is not set #Zerotier内网穿透
 # CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set #IPSec VPN 服务器
 # CONFIG_PACKAGE_luci-app-pppoe-relay is not set #PPPoE穿透
 # CONFIG_PACKAGE_luci-app-pppoe-server is not set #PPPoE服务器
@@ -179,18 +176,6 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 # CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set #ssr-python服务端
 # CONFIG_PACKAGE_luci-app-kcptun is not set #Kcptun客户端
 # CONFIG_PACKAGE_shadowsocksr-libev-server is not set #ssr服务端
-#
-# 文件共享相关(禁用):
-#
-# CONFIG_PACKAGE_luci-app-aria2 is not set #Aria2离线下载
-# CONFIG_PACKAGE_luci-app-minidlna is not set #miniDLNA服务
-# CONFIG_PACKAGE_luci-app-kodexplorer is not set #可到私有云
-# CONFIG_PACKAGE_luci-app-filebrowser is not set #File Browser私有云
-# CONFIG_PACKAGE_luci-app-fileassistant is not set #文件助手
-# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP 服务器
-# CONFIG_PACKAGE_luci-app-samba is not set #网络共享
-# CONFIG_PACKAGE_autosamba is not set #网络共享
-# CONFIG_PACKAGE_samba36-server is not set #网络共享
 EOF
 
 # 常用LuCI插件(启用):
@@ -204,7 +189,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #KMS激活服务器
-# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
