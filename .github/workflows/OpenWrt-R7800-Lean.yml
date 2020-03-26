@@ -14,8 +14,8 @@ on:
     - cron: 0 01 * * *
 
 # release触发
-  release:
-    types: [published]
+#  release:
+#    types: [published]
 
 # 点赞触发
 #  watch:
