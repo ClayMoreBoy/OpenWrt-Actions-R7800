@@ -112,4 +112,4 @@ jobs:
         path: ./artifact/
     
     - name: 微信通知
-      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-Config(配置)提取完成
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-Config提取完成
