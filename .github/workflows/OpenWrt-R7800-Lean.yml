@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: OpenWrt-R7800-Lean
+name: OpenWrt-R7800-Lean(固件)
 
 on:
 # 定时触发
