@@ -18,8 +18,8 @@ on:
 #    types: [published]
 
 # 点赞触发
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 # 编辑触发
 #  push:
@@ -138,4 +138,4 @@ jobs:
         path: ./artifact/
     
     - name: 微信通知
-      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean(固件)编译完成
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean固件编译完成
