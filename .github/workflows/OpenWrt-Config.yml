@@ -1,0 +1,115 @@
+#=================================================
+# https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800
+# Description: Build OpenWrt using GitHub Actions
+# Lisence: MIT
+# Author: ClayMoreBoy
+# Github: https://github.com/ClayMoreBoy
+#=================================================
+
+name: OpenWrt-R7800-Lean-Config(配置提取)
+
+on:
+# 定时触发
+  schedule:
+    - cron: 0 01 * * *
+
+# release触发
+#  release:
+#    types: [published]
+
+# 点赞触发
+#  watch:
+#    types: [started]
+
+# 编辑触发
+#  push:
+#    branches: 
+#      - master
+
+# config触发
+#  paths:
+#    - '.config'
+
+#SSH_ACTIONS 开启SSH连接
+#UPLOAD_BIN_DIR上传BIN目录
+#UPLOAD_FIRMWARE上传固件目录
+
+env:
+  REPO_URL: https://github.com/project-openwrt/openwrt-latest
+  REPO_BRANCH: master
+  DIY_SH: OpenWrt-R7800-Config.sh
+  SSH_ACTIONS: false
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 校验本地文件
+      uses: actions/checkout@master
+        
+    - name: 初始化编译环境
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        docker rmi $(docker images -q)
+        sudo -E swapoff /swapfile
+        sudo -E rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get remove -y --purge azure-cli ghc zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* mssql-tools msodbcsql17
+        sudo -E apt-get update -y
+        sudo -E apt-get full-upgrade -y
+        sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-8 gcc++-8 gcc-8-multilib g++-8-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz device-tree-compiler
+        sudo -E apt-get autoremove -y --purge
+        sudo -E apt-get clean -y
+        sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php
+        
+    - name: 克隆源代码
+      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+
+    - name: 更新源
+      working-directory: ./openwrt
+      run: ./scripts/feeds update -a
+
+    - name: 安装源
+      working-directory: ./openwrt
+      run:  ./scripts/feeds install -a
+
+    - name: 创建自定义配置文件 - OpenWrt-R7800
+      run: |
+        [ -e files ] && mv files openwrt/files
+        chmod +x $DIY_SH
+        cd openwrt
+        ../$DIY_SH
+        make defconfig
+        
+    - name: 开启SSH远程连接
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+    
+    - name: 上传BIN目录
+      uses: actions/upload-artifact@master
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt-Bin-Dev
+        path: openwrt/bin
+
+    - name: 整理文件
+      id: organize
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      run: |
+          rm -rf ./artifact/
+          mkdir -p ./artifact/
+          mv openwrt/.config  ./artifact/.config
+    
+    - name: 上传固件
+      uses: actions/upload-artifact@master
+      with:
+        name: OpenWrt-Firmware-R7800-Lean-Config(配置)
+        path: ./artifact/
+    
+    - name: 微信通知
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-Config(配置)提取完成
