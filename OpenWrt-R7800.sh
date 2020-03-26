@@ -10,11 +10,8 @@
 # 定制默认IP
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-#取掉默认主题
-# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
-
-#
-sed -i 's/Master-Lienol/-ClayMoreBoy/g' feeds/luci/luci.mk
+# 取掉默认主题
+sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -35,8 +32,8 @@ cp -f ../zzz-default-settings-lean package/lean/default-settings/files/zzz-defau
 # sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
 
 # 替换默认Argon主题
-rm -rf package/lean/luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+# rm -rf package/lean/luci-theme-argon
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 # 添加第三方软件包
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
