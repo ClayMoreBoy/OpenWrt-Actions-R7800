@@ -136,3 +136,6 @@ jobs:
       with:
         name: OpenWrt-Firmware-R7800-Lean(固件)
         path: ./artifact/
+    
+    - name: 微信通知
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean(固件)编译完成
