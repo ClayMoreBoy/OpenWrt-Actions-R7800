@@ -1,6 +1,6 @@
 ## Netgear R7800路由器固件自动编译 [![OpenWrt](https://img.shields.io/badge/for-OpenWrt-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/openwrt/openwrt)
 >固件来源：
-[![Lean](https://img.shields.io/badge/Form-Lean-brightgreen.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede) [![Lienol](https://img.shields.io/badge/Form-Lienol-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt)
+[![Lean](https://img.shields.io/badge/Form-Lean-brightgreen.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede)
 
 ## R7800 默认配置
 ### 初始管理地址:10.0.0.1
@@ -16,11 +16,7 @@
 --------------
 
 ### 编译状态
-[![OpenWrt-R7800-Lienol-Lean](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Lienol-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Lienol-Lean)
-
 [![OpenWrt-R7800-Lean](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Lean)
-
-[![OpenWrt-R7800-Dev](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Dev/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Dev)
 
 仅编译网件R7800的路由器固件，原则上不接受个性化定制。
 
