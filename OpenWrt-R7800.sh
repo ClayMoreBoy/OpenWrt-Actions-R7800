@@ -98,10 +98,10 @@ EOF
 # EOF
 
 # IPv6支持:
-cat >> .config <<EOF
+# cat >> .config <<EOF
 # CONFIG_PACKAGE_dnsmasq_full_dhcpv6 is not set
 # CONFIG_PACKAGE_ipv6helper is not set
-EOF
+# EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
@@ -124,7 +124,7 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-oaf is not set #应用过滤
+CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
@@ -139,22 +139,18 @@ cat >> .config <<EOF
 # CONFIG_POSTFIX_CDB is not set
 # CONFIG_POSTFIX_SQLITE is not set
 # CONFIG_POSTFIX_PCRE is not set
-# CONFIG_KERNEL_IPV6 is not set
-# CONFIG_KERNEL_IPV6_MULTIPLE_TABLES is not set
-# CONFIG_KERNEL_IPV6_SUBTREES is not set
-# CONFIG_KERNEL_IPV6_MROUTE is not set
 EOF
 
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
+CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
 CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-usb-printer is not set #USB打印机
-# CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
-# CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
+CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
+CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
 #
@@ -202,7 +198,7 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
@@ -212,7 +208,7 @@ CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #KMS激活服务器
 # CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
-# CONFIG_PACKAGE_luci-app-ddns is not set #DDNS服务
+CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
 # CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
