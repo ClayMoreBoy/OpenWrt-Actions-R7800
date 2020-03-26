@@ -118,7 +118,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt-Bin-Lean
+        name: OpenWrt-Bin-Lean(IPK插件集)
         path: openwrt/bin
 
     - name: 整理文件
@@ -134,5 +134,5 @@ jobs:
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt-Firmware-R7800-Lean
+        name: OpenWrt-Firmware-R7800-Lean(固件)
         path: ./artifact/
