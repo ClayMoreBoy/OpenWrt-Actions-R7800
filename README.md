@@ -13,7 +13,7 @@
 * [特别功能](#特别功能)
 * [固件下载](#固件下载)
 * [使用方法](#使用方法)
-* [来杯咖啡☕](#来杯咖啡☕)
+* [来杯咖啡](#来杯咖啡)
 --------------
 
 ### 编译状态
@@ -55,6 +55,6 @@
 
 3. 在Action中下载编译好的项目
 
-## 来杯咖啡☕
+## 来杯咖啡
 
 ![](https://raw.githubusercontent.com/ClayMoreBoy/OpenWrt-Actions-R7800/master/Sponsor.png)
