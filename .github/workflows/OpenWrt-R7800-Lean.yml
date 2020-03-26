@@ -1,9 +1,9 @@
 #=================================================
-# https://github.com/P3TERX/Actions-OpenWrt
+# https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800
 # Description: Build OpenWrt using GitHub Actions
 # Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
+# Author: ClayMoreBoy
+# Github: https://github.com/ClayMoreBoy
 #=================================================
 
 name: OpenWrt-R7800-Lean(固件)
