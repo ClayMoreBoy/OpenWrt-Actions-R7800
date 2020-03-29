@@ -112,6 +112,7 @@ detect_mac80211() {
 			set wireless.radio${devidx}.channel=${channel}
 			set wireless.radio${devidx}.hwmode=11${mode_band}
 			set wireless.radio${devidx}.country=US #指定国家
+			set wireless.radio${devidx}.mu_beamformer=1 #开启MU-MIMO
 			${dev_id}
 			${ht_capab}
 			set wireless.radio${devidx}.disabled=0
