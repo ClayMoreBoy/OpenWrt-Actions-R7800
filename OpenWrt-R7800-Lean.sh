@@ -20,10 +20,14 @@ cp -f ../banner package/base-files/files/etc/
 
 # 自定义固件
 rm -rf package/default-settings/files/zzz-default-settings
-cp -f ../zzz-default-settings-lean package/lean/default-settings/files/zzz-default-settings
+cp -f ../zzz-default-settings package/lean/default-settings/files/
+
+# 替换ipq806x/Makefile
+rm -rf target/linux/ipq806x/Makefile
+cp -f ../Makefile target/linux/ipq806x/
 
 # 添加第三方软件包
-git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
+# git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
