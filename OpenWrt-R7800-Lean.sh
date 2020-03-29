@@ -7,9 +7,6 @@
 # Github: https://github.com/ClayMoreBoy
 #=================================================
 
-# 定制默认IP
-# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
-
 # 取掉默认主题
 sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
@@ -25,30 +22,12 @@ cp -f ../banner package/base-files/files/etc/
 rm -rf package/default-settings/files/zzz-default-settings
 cp -f ../zzz-default-settings-lean package/lean/default-settings/files/zzz-default-settings
 
-# 增加制作人
-# sed -i "s/echo \"DISTRIB_DESCRIPTION='OpenWrt '\"/echo \"DISTRIB_DESCRIPTION='OpenWrt Compiled by ClayMoreBoy '\"/g" package/lean/default-settings/files/zzz-default-settings
-
-# 更改改机器名称
-# sed -i 's/OpenWrt/R7800/g' package/base-files/files/bin/config_generate
-
-# 替换默认Argon主题
-# rm -rf package/lean/luci-theme-argon
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-
 # 添加第三方软件包
 git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
-git clone -b passwall https://github.com/Lienol/openwrt-package package/luci-app-passwall
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/sypopo/luci-theme-atmaterial.git package/lean/luci-theme-atmaterial
-git clone https://github.com/ClayMoreBoy/luci-theme-rosy.git package/luci-theme-rosy
-git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly.git package/luci-theme-Butterfly
-git clone https://github.com/Leo-Jo-My/luci-theme-Butterfly-dark.git package/luci-theme-Butterfly-dark
-git clone https://github.com/Leo-Jo-My/luci-theme-opentomato.git package/luci-theme-opentomato
-git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
-git clone https://github.com/Leo-Jo-My/luci-theme-argon-mod.git package/luci-theme-argon-mod
-git clone https://github.com/apollo-ng/luci-theme-darkmatter package/luci-theme-darkmatter
 
 #创建自定义配置文件 - OpenWrt-R7800
 
@@ -123,7 +102,6 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 # CONFIG_PACKAGE_luci-app-openclash is not set
 EOF
@@ -200,12 +178,13 @@ CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
+CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 EOF
 
 # LuCI主题:
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-theme-argon is not set
-# CONFIG_PACKAGE_luci-theme-atmaterial is not set
+CONFIG_PACKAGE_luci-theme-atmaterial=y
 # CONFIG_PACKAGE_luci-theme-bootstrap is not set
 CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
