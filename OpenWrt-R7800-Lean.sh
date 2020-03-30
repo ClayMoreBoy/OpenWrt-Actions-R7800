@@ -123,8 +123,9 @@ EOF
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
-CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
-CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
+CONFIG_PACKAGE_luci-app-unblockneteasemusic-go=y #解锁网易云灰色歌曲
+# CONFIG_PACKAGE_luci-app-unblockmusic is not set #解锁网易云灰色歌曲
+# CONFIG_UnblockNeteaseMusic_Go is not set #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
 CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
@@ -186,6 +187,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+CONFIG_PACKAGE_luci-app-filebrowser=y #文件浏览器
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 # CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
