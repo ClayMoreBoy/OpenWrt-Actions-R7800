@@ -30,7 +30,7 @@ sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
+# git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
 git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 
 #创建自定义配置文件 - OpenWrt-R7800
@@ -211,7 +211,7 @@ EOF
 # LuCI主题:
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-theme-argon is not set
-CONFIG_PACKAGE_luci-theme-atmaterial=y
+# CONFIG_PACKAGE_luci-theme-atmaterial is not set
 # CONFIG_PACKAGE_luci-theme-bootstrap is not set
 CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
