@@ -31,7 +31,7 @@ git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-ap
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 # git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
-git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+git clone https://github.com/Apocalypsor/luci-app-smartdns.git package/luci-app-smartdns
 
 #创建自定义配置文件 - OpenWrt-R7800
 
