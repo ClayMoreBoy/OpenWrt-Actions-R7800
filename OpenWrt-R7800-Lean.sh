@@ -199,11 +199,14 @@ CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #KMS激活服务器
 CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
+# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP服务器
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
 # CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
 # CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
 # CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
+# CONFIG_PACKAGE_luci-app-zerotier is not set #ZeroTier内网穿透
+# CONFIG_PACKAGE_luci-app-accesscontrol is not set #访问时间控制
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
