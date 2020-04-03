@@ -190,7 +190,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
-CONFIG_PACKAGE_luci-app-filebrowser=y #文件浏览器
+# CONFIG_PACKAGE_luci-app-filebrowser is not set #文件浏览器
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 # CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
 # CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
