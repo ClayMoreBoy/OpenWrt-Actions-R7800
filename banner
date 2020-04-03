@@ -7,7 +7,7 @@
   _/    _/      _/              _/_/         _/         _/        
 
 ---------------------------------------------------------------
-       OpenWrt (SNAPSHOT-V2020.03) - Mod by ClayMoreBoy
+       OpenWrt (SNAPSHOT-V$(date "+%Y.%m.%d")) - Mod by ClayMoreBoy
 ---------------------------------------------------------------
      * GitHub:            https://github.com/ClayMoreBoy
      * E-Mail:            claymor3.sky@gmail.com
