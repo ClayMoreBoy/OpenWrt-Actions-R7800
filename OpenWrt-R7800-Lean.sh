@@ -28,6 +28,9 @@ sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\
 #修改固件生成名字,增加当天日期(by:左右）
 sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=ClayMoreBoy-$(shell date +%Y%m%d)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 
+#修改版本号
+sed -i 's/R20/V$(date "+%Y.%m.%d")/g' package/lean/default-settings/files/zzz-default-settings
+
 # 添加第三方软件包
 # git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
