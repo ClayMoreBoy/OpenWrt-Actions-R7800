@@ -94,10 +94,10 @@ EOF
 # EOF
 
 # IPv6支持:
-cat >> .config <<EOF
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_ipv6helper=y
-EOF
+# cat >> .config <<EOF
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+# CONFIG_PACKAGE_ipv6helper=y
+# EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
@@ -142,8 +142,8 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-mwan3helper=y #多拨负载均衡
-CONFIG_PACKAGE_luci-app-mwan3=y #多线多拨
+# CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
+# CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
 EOF
