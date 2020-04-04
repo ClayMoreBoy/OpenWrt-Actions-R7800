@@ -87,7 +87,8 @@ jobs:
         cd openwrt
         useVersionInfo=$(git show -s --date=short --format="Author: %an<br/>date: %cd<br/>commit: %s<br/>commit hash: %H")
         echo "::set-env name=useVersionInfo::$useVersionInfo"
-        echo "::set-env name=DATE::$(date "+%Y-%m-%d")"
+        echo "::set-env name=DATE::$(date "+%Y%m%d")"
+        echo "::set-env name=RELEASE_DATE::$(date "+%Y-%m-%d")"
 
     - name: 更新源
       working-directory: ./openwrt
@@ -200,8 +201,8 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        tag_name: ${{ env.DATE }}
-        release_name: Netgear R7800 🚀 | 自动编译 / ${{ env.DATE }}
+        tag_name: ${{ env.RELEASE_DATE }}
+        release_name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
         body: |
             ${{ github.event.commits[0].message }}
             当前使用版本:（编译前的最后一次大雕源码更新记录）
