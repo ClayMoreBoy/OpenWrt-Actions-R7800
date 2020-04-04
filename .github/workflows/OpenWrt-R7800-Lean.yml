@@ -160,4 +160,4 @@ jobs:
         path: ./artifact/
     
     - name: 微信通知
-      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-${{ env.VERSION }}固件编译完成
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-${{ env.DATE }}固件编译完成
