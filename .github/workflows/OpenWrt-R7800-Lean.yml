@@ -81,7 +81,7 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
 
-    - name: 克隆源代码
+    - name: 克隆源代码 by bobotoy
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
@@ -178,7 +178,7 @@ jobs:
         name: sha256sums
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
     
-    - name: 上传文件到Tmp.Link
+    - name: 上传文件到Tmp.Link by SuLingGG
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true'
       run: |
         cd openwrt/bin/packages
@@ -196,7 +196,7 @@ jobs:
         name: ${{ env.DOWNLOAD_URL_FILE }}
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
     
-    - name: 创建发布
+    - name: 创建发布 by ylqjgm
       uses: actions/create-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
@@ -247,7 +247,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: openwrt/.config
-          asset_name: .config
+          asset_name: openwrt.config
           asset_content_type: application/octet-stream
 
     -
