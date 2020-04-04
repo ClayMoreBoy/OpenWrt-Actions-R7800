@@ -1,12 +1,13 @@
-## Netgear R7800路由器固件自动编译 [![OpenWrt](https://img.shields.io/badge/for-OpenWrt-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/openwrt/openwrt)
+## Netgear R7800路由器固件自动编译 [![OpenWrt](https://img.shields.io/badge/From-OpenWrt-blue.svg?style=for-the-badge&logo=appveyor)](https://github.com/openwrt/openwrt)
 >固件来源：
-[![Lean](https://img.shields.io/badge/Form-Lean-brightgreen.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede)
+[![Lean](https://img.shields.io/badge/Lean-Package-brightgreen.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede) 
+ [![Lienol](https://img.shields.io/badge/Lienol-Package-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/Lienol/openwrt-package) [![ClayMoreBoy](https://img.shields.io/badge/Mod-ClayMoreBoy-blueviolet.svg?style=flat&logo=appveyor)](https://github.com/ClayMoreBoy)
 
 ## R7800 默认配置
-### 初始管理地址:10.0.0.1
-### 初始管理用户:root       (路由 & SSH)
-### 初始管理密码:password   (路由 & SSH)
-### 初始Wifi密码:password
+### 默认登录IP地址:10.0.0.1
+###           用户:root       (路由 & SSH)
+###           密码:password   (路由 & SSH)
+###       Wifi密码:password
 --------------
 * [编译状态](#编译状态)
 * [更新建议](#更新建议)
@@ -19,20 +20,8 @@
 ### 编译状态
 [![OpenWrt-R7800-Lean](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/workflows/OpenWrt-R7800-Lean/badge.svg)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/actions?query=workflow%3AOpenWrt-R7800-Lean)
 
-仅编译网件R7800的路由器固件，原则上不接受个性化定制。
-
-编译的固件永久保存以供挑选使用。
-
 ### 更新建议
-重大版本或重大改动时，建议不保留配置全新更新。
-
-### 特别功能
-
-#### 不服来跑个分？cpu跑分
-使用SSH连接路由器终端，输入`/etc/coremark.sh` ，回车，稍等片刻后，访问路由器主页，概况里将显示分数，例如网件R7800的主页主机型号末尾将会显示路由器跑分` Netgear Nighthawk X4S R7800 (CpuMark : 12654.587288 Scores) ` 。
-
-#### 温度监控（仅限网件R7800）
-网件r7800添加额外功能温度监控。
+建议不保留配置全新更新。
 
 ### 固件下载
 #### 最新固件下载
