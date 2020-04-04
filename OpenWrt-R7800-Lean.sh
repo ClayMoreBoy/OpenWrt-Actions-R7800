@@ -60,6 +60,13 @@ touch ./.config
 # 无论你想要对固件进行怎样的定制, 都需要且只需要修改 EOF 回环内的内容.
 # 
 
+# 编译者信息
+cat >> .config <<EOF
+CONFIG_KERNEL_BUILD_USER="ClayMoreBoy"
+CONFIG_KERNEL_BUILD_DOMAIN="github.com/ClayMoreBoy"
+CONFIG_GRUB_TITLE="OpenWrt AutoBuild By ClayMoreBoy"
+EOF
+
 # 编译R7800固件:
 cat >> .config <<EOF
 CONFIG_TARGET_ipq806x=y
