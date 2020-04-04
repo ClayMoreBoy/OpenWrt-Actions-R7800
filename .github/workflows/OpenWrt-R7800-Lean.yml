@@ -131,11 +131,16 @@ jobs:
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
 
+    - name: 提取日期
+      run: |
+        date=$(date +%Y-%m-%d)
+        echo "::set-env name=DATE::$date"
+        
     - name: 上传BIN目录
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt-Bin-Lean(IPK插件集)
+        name: OpenWrt-Bin-Lean(IPK插件集)-${{ env.DATE }}
         path: openwrt/bin
 
     - name: 整理文件
@@ -147,12 +152,12 @@ jobs:
           mv openwrt/.config  ./artifact/.config
           find openwrt/bin/targets/ -name "*squashfs*img*" | xargs -i mv -f {} ./artifact/
           find openwrt/bin/targets/ -name "*squashfs*bin*" | xargs -i mv -f {} ./artifact/
-
+        
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt-Firmware-R7800-Lean(固件)
+        name: OpenWrt-Firmware-R7800-Lean-${{ env.DATE }}
         path: ./artifact/
     
     - name: 微信通知
-      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean固件编译完成
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-${{ env.VERSION }}固件编译完成
