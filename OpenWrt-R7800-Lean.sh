@@ -30,6 +30,9 @@ sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=ClayMoreBoy-$(shell 
 # 修改版本号
 sed -i 's/V2020/V$(date "+%Y.%m.%d")/g' package/lean/default-settings/files/zzz-default-settings
 
+# 修改版本号
+sed -i 's/V2020/V$(date "+%Y.%m.%d")/g' package/base-files/files/etc/banner
+
 # 添加第三方软件包
 # git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
