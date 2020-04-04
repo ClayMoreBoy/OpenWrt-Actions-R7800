@@ -36,7 +36,8 @@ git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-ap
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 # git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
-git clone https://github.com/tty228/luci-app-smartdns.git package/luci-app-smartdns
+git clone https://github.com/ujincn/smartdns.git package/smartdns
+git clone https://github.com/ujincn/luci-app-smartdns-compat.git package/luci-app-smartdns-compat
 
 #创建自定义配置文件 - OpenWrt-R7800
 
@@ -119,7 +120,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
-CONFIG_PACKAGE_luci-app-smartdns=y #SmartDns
+CONFIG_PACKAGE_luci-app-smartdns-compat=y #SmartDns
 EOF
 
 # Lean插件选择:
