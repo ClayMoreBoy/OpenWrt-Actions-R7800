@@ -161,15 +161,15 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
+        name: ${{ env.DEVICE }}-squashfs-factory.img
+        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
     
     - name: 上传系统升级镜像
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
+        name: ${{ env.DEVICE }}-squashfs-sysupgrade.bin
+        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
     
     - name: 上传镜像文件哈希值
       uses: actions/upload-artifact@master
@@ -216,7 +216,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
+          asset_path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
           asset_content_type: application/octet-stream
 
@@ -226,7 +226,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
+          asset_path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_content_type: application/octet-stream
 
