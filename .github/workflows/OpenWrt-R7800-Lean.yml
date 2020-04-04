@@ -48,6 +48,7 @@ env:
   DEVICE: openwrt-ipq806x-netgear_r7800
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
+  BUILD_USER: ClayMoreBoy
   TZ: Asia/Shanghai
 
 jobs:
@@ -166,15 +167,15 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE }}-squashfs-factory.img
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
+        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
+        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
     
-    - name: 上传系统升级镜像
+    - name: 上传系统升级镜像BUILD_USER
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success'
       with:
-        name: ${{ env.DEVICE }}-squashfs-sysupgrade.bin
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
+        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
+        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
     
     - name: Upload Images Sha256sums
       uses: actions/upload-artifact@master
