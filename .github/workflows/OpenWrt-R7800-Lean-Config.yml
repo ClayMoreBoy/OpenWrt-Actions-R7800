@@ -18,8 +18,8 @@ on:
 #    types: [published]
 
 # 点赞触发
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 # 编辑触发
 #  push:
@@ -105,11 +105,16 @@ jobs:
           mkdir -p ./artifact/
           mv openwrt/.config  ./artifact/.config
     
+    - name: 提取日期
+      run: |
+        date=$(date +%Y-%m-%d)
+        echo "::set-env name=DATE::$date"
+        
     - name: 上传固件
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt-Firmware-R7800-Lean-Config(配置)
+        name: OpenWrt-Firmware-R7800-Lean-Config(配置)-${{ env.DATE }}
         path: ./artifact/
     
     - name: 微信通知
-      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-Config提取完成
+      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800-Lean-Config-${{ env.DATE }}提取完成
