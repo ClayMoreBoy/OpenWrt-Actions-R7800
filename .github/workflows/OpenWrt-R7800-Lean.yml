@@ -183,6 +183,8 @@ jobs:
       run: |
         cd openwrt/bin/packages
         zip -q -r ../targets/$TARGET/$SUBTARGET/packages.zip *
+        cd ../targets/$TARGET/$SUBTARGET
+        zip -q -r kernel-packages.zip packages
         find . -maxdepth 1 ! -name "$DOWNLOAD_URL_FILE" -type f -exec echo {} >> $DOWNLOAD_URL_FILE \; -exec curl -k -F "file=@{}" -F "token=${{ secrets.TMP_LINK_TOKEN }}" -F "model=3" -X POST "https://connect.tmp.link/api_v2/cli_uploader" -s >> $DOWNLOAD_URL_FILE \;
         sed -i 's/\.\///g' $DOWNLOAD_URL_FILE
         sed -i '/^Upload.*/d' $DOWNLOAD_URL_FILE
