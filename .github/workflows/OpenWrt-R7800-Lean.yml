@@ -200,7 +200,7 @@ jobs:
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
     
     - name: 创建发布 by ylqjgm
-      uses: actions/create-release@v1
+      uses: actions/create-release@master
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
@@ -214,7 +214,7 @@ jobs:
         prerelease: false
 
     -
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
@@ -224,7 +224,7 @@ jobs:
           asset_content_type: application/octet-stream
 
     -
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
@@ -234,7 +234,7 @@ jobs:
           asset_content_type: application/octet-stream
 
     -
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
@@ -244,7 +244,7 @@ jobs:
           asset_content_type: application/octet-stream
 
     -
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
@@ -254,7 +254,7 @@ jobs:
           asset_content_type: application/octet-stream
 
     -
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
@@ -264,7 +264,7 @@ jobs:
           asset_content_type: application/octet-stream
 
     -
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@master
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
