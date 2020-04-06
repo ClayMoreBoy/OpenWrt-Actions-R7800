@@ -49,6 +49,7 @@ env:
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
   BUILD_USER: ClayMoreBoy
+  CREATE_RELEASE: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -202,6 +203,7 @@ jobs:
     - name: 创建发布 by ylqjgm
       id: create_release
       uses: actions/create-release@master
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
@@ -214,20 +216,21 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
+    - name: 上传发布
       id: upload-release-asset
       uses: actions/upload-release-asset@v1
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ github.workspace }}/openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
-        asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
-        asset_content_type: application/octet-stream
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
+          asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
+          asset_content_type: application/octet-stream
 
-    - name: Upload Release Asset
-      id: upload-release-asset1
+    - name: 上传发布
       uses: actions/upload-release-asset@v1
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
@@ -236,41 +239,45 @@ jobs:
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_content_type: application/octet-stream
 
-    -
-        uses: actions/upload-release-asset@v1
-        env:
+    - name: 上传发布
+      uses: actions/upload-release-asset@v1
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
+      env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
+      with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}.manifest
           asset_name: ${{ env.DEVICE }}.manifest
           asset_content_type: application/octet-stream
 
-    -
-        uses: actions/upload-release-asset@v1
-        env:
+    - name: 上传发布
+      uses: actions/upload-release-asset@v1
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
+      env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
+      with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./openwrt/.config
           asset_name: .config
           asset_content_type: application/octet-stream
 
-    -
-        uses: actions/upload-release-asset@v1
-        env:
+    - name: 上传发布
+      uses: actions/upload-release-asset@v1
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
+      env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
+      with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./openwrt/bin/packages
           asset_name: Packages.tar.gz
           asset_content_type: application/octet-stream
 
-    -
-        uses: actions/upload-release-asset@v1
-        env:
+    - name: 上传发布
+      uses: actions/upload-release-asset@v1
+      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
+      env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
+      with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
           asset_name: sha256sums
