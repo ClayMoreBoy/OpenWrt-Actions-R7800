@@ -182,7 +182,6 @@ jobs:
     - name: 上传文件到Tmp.Link by SuLingGG
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true'
       run: |
-        mv openwrt/.config  ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/.config
         cd openwrt/bin/packages
         zip -q -r ../targets/$TARGET/$SUBTARGET/packages.zip *
         cd ../targets/$TARGET/$SUBTARGET
@@ -238,17 +237,6 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
-          asset_content_type: application/octet-stream
-
-    - name: 上传发布
-      uses: actions/upload-release-asset@v1
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
-      env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}.manifest
-          asset_name: ${{ env.DEVICE }}.manifest
           asset_content_type: application/octet-stream
 
     - name: 上传发布
