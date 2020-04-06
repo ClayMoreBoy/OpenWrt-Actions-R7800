@@ -257,8 +257,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/packages
-          asset_name: Packages.tar.gz
+          asset_path: ./openwrt/bin/targets/$TARGET/$SUBTARGET/packages.zip
+          asset_name: Packages.zip
           asset_content_type: application/octet-stream
 
     - name: 上传发布
