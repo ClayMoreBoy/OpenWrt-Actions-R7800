@@ -6,7 +6,7 @@
 # Github: https://github.com/ClayMoreBoy
 #=================================================
 
-name: OpenWrt-R7800-Lean(固件)
+name: OpenWrt-R7800-Lean
 
 on:
 # 定时触发
@@ -58,7 +58,9 @@ env:
   TARGET: ipq806x
   SUBTARGET: generic
   DEVICE: openwrt-ipq806x-netgear_r7800
-  # 上传到中转站
+  # 上传到奶牛快传
+  UPLOAD_COWTRANSFER: true
+  # 上传到TMP.link
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
   # 编译者
@@ -177,54 +179,40 @@ jobs:
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
           git push --force --quiet https://$GITHUB_TOKEN@github.com/ClayMoreBoy/OpenWrt.git HEAD:OpenWrt_$BRANCH
-          
-    # 上传配置 By SuLingGG
-    - name: Upload Config
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
-      with:
-        name: .config
-        path: openwrt/.config
     
-    # 上传配置 By SuLingGG
-    - name: Upload Packages
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_PACKAGES == 'true'
-      with:
-        name: packages
-        path: openwrt/bin/packages
-        
-    # 上传官方镜像 By SuLingGG
-    - name: Upload SquashFS Factory Image
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
-      with:
-        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
+    # 整理文件
+    - name: Organize Files
+      id: organize
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        echo "::set-env name=FIRMWARE::$PWD"
+        echo "::set-output name=status::success"
     
-    # 上传系统升级镜像 By SuLingGG
-    - name: Upload SquashFS Sysupgrade Image
+    # 上传固件
+    - name: Upload Firmware Directory
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
+      if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
-    
-    # 上传镜像文件哈希值 By SuLingGG
-    - name: Upload Images Sha256sums
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
-      with:
-        name: sha256sums
-        path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
+        name: OpenWrt_firmware
+        path: ${{ env.FIRMWARE }}
+
+    # 上传固件到奶牛快传
+    - name: Upload Firmware To CowTransfer
+      if: env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
+      run: |
+        curl -sL https://git.io/cowtransfer | sh
+        ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash ${FIRMWARE} > cowtransfer.txt
+        cat cowtransfer.txt
+        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.txt | grep https | cut -f2 -d" ")"
     
     # 上传文件到Tmp.Link By SuLingGG
     - name: Upload Firmwares To Tmp.Link
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true'
+      if: env.UPLOAD_TMP_LINK == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/packages
-        zip -q -r ../targets/$TARGET/$SUBTARGET/packages.zip *
-        cd ../targets/$TARGET/$SUBTARGET
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
         rm -f *.manifest
         rm -f *uImage
         find . -maxdepth 1 ! -name "$DOWNLOAD_URL_FILE" -type f -exec echo {} >> $DOWNLOAD_URL_FILE \; -exec curl -k -F "file=@{}" -F "token=${{ secrets.TMP_LINK_TOKEN }}" -F "model=3" -X POST "https://connect.tmp.link/api_v2/cli_uploader" -s >> $DOWNLOAD_URL_FILE \;
@@ -240,17 +228,25 @@ jobs:
       with:
         name: ${{ env.DOWNLOAD_URL_FILE }}
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
+
+    # 生成标签
+    - name: Generate Tag
+      id: tag
+      if: env.CREATE_RELEASE == 'true' && !cancelled()
+      run: |
+        echo "🚀 Auto build | 自动编译" >> release.txt
+        echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
+        echo "::set-output name=status::success"
     
-    # 创建发布 By ylqjgm
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@master
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
+    # 发行固件
+    - name: Upload Firmware To Release
+      uses: softprops/action-gh-release@v1
+      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
+        name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
         tag_name: ${{ env.RELEASE_DATE }}
-        release_name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
         body: |            
             1、本固件为自动编译
             2、发行版中只提供完整的固件
@@ -258,73 +254,11 @@ jobs:
             4、源码：${{ env.REPO_URL }}
             5、分支：${{ env.REPO_BRANCH }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
-            -- Automated build | 自动编译
             当前使用版本:（编译前的最后一次大雕源码更新记录）
             ${{ github.event.commits[0].message }}
             ${{ env.useVersionInfo }}
-        draft: false
-        prerelease: false
-
-    # 上传发布
-    - name: Upload Release
-      id: upload-release-asset
-      uses: actions/upload-release-asset@master
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
-      env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
-          asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
-          asset_content_type: application/octet-stream
-
-    # 上传发布
-    - name: Upload Release
-      uses: actions/upload-release-asset@master
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
-      env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
-          asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
-          asset_content_type: application/octet-stream
-
-    # 上传发布
-    - name: Upload Release
-      uses: actions/upload-release-asset@master
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
-      env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/.config
-          asset_name: .config
-          asset_content_type: application/octet-stream
-
-    # 上传发布
-    - name: Upload Release
-      uses: actions/upload-release-asset@master
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
-      env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/targets/$TARGET/$SUBTARGET/packages.zip
-          asset_name: Packages.zip
-          asset_content_type: application/octet-stream
-
-    # 上传发布
-    - name: Upload Release
-      uses: actions/upload-release-asset@master
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
-      env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
-          asset_name: sha256sums
-          asset_content_type: application/octet-stream
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
 
     # 微信通知 By rohu168
     - name: Sending WeChat Notification
