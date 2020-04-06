@@ -36,19 +36,29 @@ on:
 #UPLOAD_FIRMWARE上传固件目录
 
 env:
+  # 源
   REPO_URL: https://github.com/coolsnowwolf/lede
+  # 分支
   REPO_BRANCH: master
+  # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
+  # 释放磁盘空间
   FREE_UP_DISK: true
+  # 开启SSH连接
   SSH_ACTIONS: false
-  UPLOAD_BIN_DIR: true
+  # 上传插件包
+  UPLOAD_PACKAGES: true
+  # 上传固件
   UPLOAD_FIRMWARE: true
   TARGET: ipq806x
   SUBTARGET: generic
   DEVICE: openwrt-ipq806x-netgear_r7800
+  # 上传至中转站
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
+  # 编译者
   BUILD_USER: ClayMoreBoy
+  # 创建发布
   CREATE_RELEASE: true
   TZ: Asia/Shanghai
 
@@ -146,35 +156,35 @@ jobs:
         
     - name: 上传配置文件
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
         name: .config
         path: openwrt/.config
     
     - name: 上传包
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_PACKAGES == 'true'
       with:
         name: packages
         path: openwrt/bin/packages
         
     - name: 上传官方镜像
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
-        name: ${{ env.DEVICE }}-squashfs-factory.img
+        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
     
     - name: 上传系统升级镜像
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
-        name: ${{ env.DEVICE }}-squashfs-sysupgrade.bin
+        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
     
     - name: 上传镜像文件哈希值
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
         name: sha256sums
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
@@ -209,9 +219,16 @@ jobs:
       with:
         tag_name: ${{ env.RELEASE_DATE }}
         release_name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
-        body: |
-            ${{ github.event.commits[0].message }}
+        body: |            
+            1、本固件为自动编译
+            2、发行版中只提供完整的固件
+            3、需要单独IPK请到分支下载
+            4、源码：${{ env.REPO_URL }}
+            5、分支：${{ env.REPO_BRANCH }}
+            -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
+            -- Automated build | 自动编译
             当前使用版本:（编译前的最后一次大雕源码更新记录）
+            ${{ github.event.commits[0].message }}
             ${{ env.useVersionInfo }}
         draft: false
         prerelease: false
