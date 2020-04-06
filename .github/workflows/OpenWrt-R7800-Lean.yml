@@ -13,7 +13,7 @@ on:
   schedule:
     - cron: 0 01 * * *
 
-# release触发
+# Release 发布触发
 #  release:
 #    types: [published]
 
@@ -26,14 +26,9 @@ on:
 #    branches: 
 #       - master
 
-# config触发
+# Config 配置触发(本项目无该配置)
 #  paths:
 #    - 'x86_64.config'
-
-#FREE_UP_DISK 释放磁盘空间
-#SSH_ACTIONS 开启SSH连接
-#UPLOAD_BIN_DIR上传BIN目录
-#UPLOAD_FIRMWARE上传固件目录
 
 env:
   # 源
@@ -44,8 +39,18 @@ env:
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 释放磁盘空间
   FREE_UP_DISK: true
+  # Lienol插件源
+  LIENOL_PACKAGES: true
   # 开启SSH连接
   SSH_ACTIONS: false
+  # Github 用户名
+  GITHUB_USER_NAME: ClayMoreBoy
+  # Github 邮箱
+  GITHUB_USER_EMAIL: claymor3.sky@gmail.com
+  # 上传分支
+  UPLOAD_BRANCH: true
+  # 分支
+  BRANCH: R7800
   # 上传插件包
   UPLOAD_PACKAGES: true
   # 上传固件
@@ -53,13 +58,15 @@ env:
   TARGET: ipq806x
   SUBTARGET: generic
   DEVICE: openwrt-ipq806x-netgear_r7800
-  # 上传至中转站
+  # 上传到中转站
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
   # 编译者
   BUILD_USER: ClayMoreBoy
-  # 创建发布
+  # 创建+上传发布
   CREATE_RELEASE: true
+  # 微信通知
+  SEND_WECHAT_MSG: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -68,20 +75,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 校验本地文件
+    # 校验本地文件
+    - name: Checkout
       uses: actions/checkout@master
 
-    - name: 初始化编译环境
+    # 初始化编译环境
+    - name: Initialize the compilation environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo swapoff /swapfile
-        sudo rm -rf /swapfile /etc/apt/sources.list.d/*
+        sudo rm -rf /swapfile /etc/apt/sources.list.d
         sudo -E apt-get -qq update
         sudo apt-get -y install asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache flex g++ gawk gcc gcc-multilib gettext git git-core help2man htop lib32gcc1 libc6-dev-i386 libglib2.0-dev libncurses5-dev libssl-dev libtool libz-dev libelf-dev make msmtp ncurses-term ocaml-nox p7zip p7zip-full patch qemu-utils sharutils subversion texinfo uglifyjs unzip upx xmlto yui-compressor zlib1g-dev make cmake device-tree-compiler  g++-multilib  python3.5
         curl -fsSL https://github.com/ClayMoreBoy/dotfiles/raw/master/.bashrc >> ~/.bashrc
 
-    - name: 释放磁盘空间
+    # 释放磁盘空间
+    - name: Free Up Disk Space
       if: env.FREE_UP_DISK == 'true'
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -92,7 +102,8 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
 
-    - name: 克隆源代码 by bobotoy
+    # 克隆源代码 By bobotoy
+    - name: Clone source code
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
@@ -101,32 +112,28 @@ jobs:
         echo "::set-env name=DATE::$(date "+%Y%m%d")"
         echo "::set-env name=RELEASE_DATE::$(date "+%Y-%m-%d")"
 
-    - name: 更新源
+    # 增加 PassWall 插件源 By rohu168
+    - name: Update and install feeds passwall
+      if: env.LIENOL_PACKAGES == 'true'
+      run: |
+        chmod +x passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./passwall.sh
+    
+    # 更新源
+    - name: Update Feeds
+      if: env.LIENOL_PACKAGES == 'false'
       working-directory: ./openwrt
       run:  |
-        echo "src-git lienol https://github.com/Lienol/openwrt-package" >> feeds.conf.default && cat feeds.conf.default
         ./scripts/feeds clean
         ./scripts/feeds update -a
-        rm -rf feeds/lienol/lienol/v2ray
-        rm -rf feeds/lienol/lienol/openssl1.1
-        rm -rf feeds/lienol/lienol/trojan
-        rm -rf feeds/lienol/lienol/ipt2socks
-        rm -rf feeds/lienol/lienol/shadowsocks-libev-new
-        rm -rf feeds/lienol/lienol/shadowsocksr-libev
-        rm -rf feeds/lienol/lienol/pdnsd-alt
-        rm -rf feeds/lienol/package/verysync
-        rm -rf feeds/lienol/lienol/luci-app-verysync
-        rm -rf package/lean/kcptun
-        rm -rf package/lean/luci-app-kodexplorer
-        rm -rf package/lean/luci-app-pppoe-relay
-        rm -rf package/lean/luci-app-pptp-server
-        rm -rf package/lean/luci-app-v2ray-server
 
-    - name: 安装源
+    # 安装源
+    - name: Install Feeds
+      if: env.LIENOL_PACKAGES == 'false'
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
-    - name: 创建自定义配置文件 - OpenWrt-R7800
+    # 加载自定义配置文件
+    - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files openwrt/files
         chmod +x $DIY_SH
@@ -134,62 +141,85 @@ jobs:
         ../$DIY_SH
         make defconfig
 
-    - name: 开启SSH远程连接
+    # SSH连接
+    - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
 
-    - name: 下载软件包
+    # 下载软件包
+    - name: Make Download
       working-directory: ./openwrt
       id: package
       run: |
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: 编译固件
+    
+    # 编译固件
+    - name: Compile Firmware
       working-directory: ./openwrt
       id: compile
       run: |
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
-        echo "::set-output name=status::success"
-        
-    - name: 上传配置文件
+        echo "::set-output name=status::success"        
+    
+    # 上传到分支 By yfdoor
+    - name: Upload Branch
+      if: env.UPLOAD_BRANCH == 'true' && steps.compile.outputs.status == 'success'
+      env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      run: |
+          cd openwrt/bin
+          git init
+          git config user.name $GITHUB_USER_NAME
+          git config user.email $GITHUB_USER_EMAIL
+          git add .
+          git commit -m "Update OpenWrt_"$BRANCH
+          git push --force --quiet https://$GITHUB_TOKEN@github.com/ClayMoreBoy/OpenWrt.git HEAD:OpenWrt_$BRANCH
+          
+    # 上传配置 By SuLingGG
+    - name: Upload Config
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
         name: .config
         path: openwrt/.config
     
-    - name: 上传包
+    # 上传配置 By SuLingGG
+    - name: Upload Packages
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_PACKAGES == 'true'
       with:
         name: packages
         path: openwrt/bin/packages
         
-    - name: 上传官方镜像
+    # 上传官方镜像 By SuLingGG
+    - name: Upload SquashFS Factory Image
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
         name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
     
-    - name: 上传系统升级镜像
+    # 上传系统升级镜像 By SuLingGG
+    - name: Upload SquashFS Sysupgrade Image
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
         name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
     
-    - name: 上传镜像文件哈希值
+    # 上传镜像文件哈希值 By SuLingGG
+    - name: Upload Images Sha256sums
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       with:
         name: sha256sums
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
     
-    - name: 上传文件到Tmp.Link by SuLingGG
+    # 上传文件到Tmp.Link By SuLingGG
+    - name: Upload Firmwares To Tmp.Link
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true'
       run: |
         cd openwrt/bin/packages
@@ -203,14 +233,16 @@ jobs:
         sed -i '/^Thank.*/d' $DOWNLOAD_URL_FILE
         sed -i '/Download/G' $DOWNLOAD_URL_FILE
     
-    - name: 上传下载地址文件
+    # 上传下载地址文件
+    - name: Upload Download Url File
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true'
       with:
         name: ${{ env.DOWNLOAD_URL_FILE }}
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
     
-    - name: 创建发布 by ylqjgm
+    # 创建发布 By ylqjgm
+    - name: Create Release
       id: create_release
       uses: actions/create-release@master
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
@@ -233,9 +265,10 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: 上传发布
+    # 上传发布
+    - name: Upload Release
       id: upload-release-asset
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@master
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
@@ -245,8 +278,9 @@ jobs:
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
           asset_content_type: application/octet-stream
 
-    - name: 上传发布
-      uses: actions/upload-release-asset@v1
+    # 上传发布
+    - name: Upload Release
+      uses: actions/upload-release-asset@master
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
@@ -256,8 +290,9 @@ jobs:
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_content_type: application/octet-stream
 
-    - name: 上传发布
-      uses: actions/upload-release-asset@v1
+    # 上传发布
+    - name: Upload Release
+      uses: actions/upload-release-asset@master
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
@@ -267,8 +302,9 @@ jobs:
           asset_name: .config
           asset_content_type: application/octet-stream
 
-    - name: 上传发布
-      uses: actions/upload-release-asset@v1
+    # 上传发布
+    - name: Upload Release
+      uses: actions/upload-release-asset@master
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
@@ -278,8 +314,9 @@ jobs:
           asset_name: Packages.zip
           asset_content_type: application/octet-stream
 
-    - name: 上传发布
-      uses: actions/upload-release-asset@v1
+    # 上传发布
+    - name: Upload Release
+      uses: actions/upload-release-asset@master
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
@@ -289,5 +326,11 @@ jobs:
           asset_name: sha256sums
           asset_content_type: application/octet-stream
 
-    - name: 微信通知
-      run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800_Lean_${{ env.DATE }}编译完成
+    # 微信通知 By rohu168
+    - name: Sending WeChat Notification
+      if: env.SEND_WECHAT_MSG == 'true' && steps.compile.outputs.status == 'success'
+      uses: yakumioto/serverchan-action@v1
+      with:
+        key: ${{ secrets.SCKEY }}
+        text: ${{ env.BRANCH }}固件编译完成！
+        desp: 源码:${{ env.REPO_URL }}
