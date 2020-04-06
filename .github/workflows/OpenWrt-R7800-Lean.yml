@@ -218,7 +218,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ github.workspace }}/openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-factory.img
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-factory.img
           asset_content_type: application/octet-stream
@@ -228,7 +228,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ github.workspace }}/openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_name: ${{ env.BUILD_USER }}-${{ env.DATE }}-${{ env.DEVICE }}-squashfs-sysupgrade.bin
           asset_content_type: application/octet-stream
@@ -238,7 +238,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ github.workspace }}/openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DEVICE }}.manifest
           asset_name: ${{ env.DEVICE }}.manifest
           asset_content_type: application/octet-stream
@@ -248,7 +248,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ github.workspace }}/openwrt/.config
           asset_name: .config
           asset_content_type: application/octet-stream
@@ -258,7 +258,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ github.workspace }}/openwrt/bin/packages
           asset_name: Packages.tar.gz
           asset_content_type: application/octet-stream
@@ -268,7 +268,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ${{ github.workspace }}/openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/sha256sums
           asset_name: sha256sums
           asset_content_type: application/octet-stream
