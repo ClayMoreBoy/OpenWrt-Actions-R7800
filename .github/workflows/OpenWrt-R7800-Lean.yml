@@ -80,7 +80,7 @@ jobs:
       uses: actions/checkout@master
 
     # 初始化编译环境
-    - name: Initialize the compilation environment
+    - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
