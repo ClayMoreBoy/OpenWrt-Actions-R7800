@@ -177,7 +177,7 @@ jobs:
           git config user.email $GITHUB_USER_EMAIL
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
-          git push --force --quiet https://$GITHUB_TOKEN@{GH_REF} HEAD:OpenWrt_$BRANCH
+          git push --force --quiet https://$GITHUB_TOKEN@@github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git HEAD:OpenWrt_$BRANCH
     
     # 整理文件
     - name: Organize Files
