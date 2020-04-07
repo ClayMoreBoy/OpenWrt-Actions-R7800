@@ -67,7 +67,7 @@ env:
   # 创建+上传发布
   CREATE_RELEASE: true
   # 微信通知
-  SEND_WECHAT_MSG: true
+  SEND_WECHAT_MSG: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -227,6 +227,13 @@ jobs:
       with:
         name: ${{ env.DOWNLOAD_URL_FILE }}
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
+    
+    # 生成标签
+    - name: Generate Tag
+      id: tag
+      if: env.CREATE_RELEASE == 'true' && !cancelled()
+      run: |
+        echo "::set-output name=status::success"
     
     # 发行固件
     - name: Upload Firmware To Release
