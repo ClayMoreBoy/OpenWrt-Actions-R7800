@@ -178,7 +178,7 @@ jobs:
           git config user.email $GITHUB_USER_EMAIL
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
-          git push --force --quiet https://$GITHUB_TOKEN@github.com/ClayMoreBoy/OpenWrt.git HEAD:OpenWrt_$BRANCH
+          git push --force --quiet https://$GITHUB_TOKEN@github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git HEAD:OpenWrt_$BRANCH
     
     # 整理文件
     - name: Organize Files
@@ -228,15 +228,6 @@ jobs:
       with:
         name: ${{ env.DOWNLOAD_URL_FILE }}
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
-
-    # 生成标签
-    - name: Generate Tag
-      id: tag
-      if: env.CREATE_RELEASE == 'true' && !cancelled()
-      run: |
-        echo "🚀 Auto build | 自动编译" >> release.txt
-        echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
-        echo "::set-output name=status::success"
     
     # 发行固件
     - name: Upload Firmware To Release
@@ -254,15 +245,16 @@ jobs:
             4、源码：${{ env.REPO_URL }}
             5、分支：${{ env.REPO_BRANCH }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
+            🚀 Auto build | 自动编译
+            🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})
             当前使用版本:（编译前的最后一次大雕源码更新记录）
             ${{ github.event.commits[0].message }}
             ${{ env.useVersionInfo }}
-        body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
 
     # 微信通知 By rohu168
     - name: Sending WeChat Notification
-      if: env.SEND_WECHAT_MSG == 'true' && steps.compile.outputs.status == 'success'
+      if: env.SEND_WECHAT_MSG == 'true' && !cancelled()
       uses: yakumioto/serverchan-action@v1
       with:
         key: ${{ secrets.SCKEY }}
