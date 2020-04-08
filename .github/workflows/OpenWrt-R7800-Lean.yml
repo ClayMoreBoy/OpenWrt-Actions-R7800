@@ -50,8 +50,8 @@ env:
   GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git
   # 上传固件
   UPLOAD_FIRMWARE: true
-  # 上传到奶牛快传(暂时失效)
-  UPLOAD_COWTRANSFER: false
+  # 上传到奶牛快传
+  UPLOAD_COWTRANSFER: true
   # 上传到TMP.link
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
@@ -244,7 +244,8 @@ jobs:
             4、源码：${{ env.REPO_URL }}
             5、分支：${{ env.REPO_BRANCH }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
-            🚀 Auto build | 自动编译        
+            🚀 Auto build | 自动编译
+            🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})        
             当前使用版本:（编译前的最后一次大雕源码更新记录）
             ${{ github.event.commits[0].message }}
             ${{ env.useVersionInfo }}
