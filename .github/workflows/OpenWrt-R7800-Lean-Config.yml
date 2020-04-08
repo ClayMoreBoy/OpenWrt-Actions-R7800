@@ -22,9 +22,9 @@ on:
 #    types: [started]
 
 # 编辑触发
-  push:
-    branches: 
-      - master
+#  push:
+#    branches: 
+#      - master
 
 # config触发
 #  paths:
