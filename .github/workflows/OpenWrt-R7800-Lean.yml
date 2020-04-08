@@ -107,13 +107,13 @@ jobs:
 
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
-      if: env.LIENOL_PACKAGES == 'true' && env.REPO_URL = 'https://github.com/coolsnowwolf/lede.git'
+      if: env.LIENOL_PACKAGES == 'true' && env.REPO_URL = 'https://github.com/coolsnowwolf/lede'
       run: |
         chmod +x passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./passwall.sh
     
     # 更新源
     - name: Update Feeds
-      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede.git'
+      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  |
         ./scripts/feeds clean
@@ -121,7 +121,7 @@ jobs:
 
     # 安装源
     - name: Install Feeds
-      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede.git'
+      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
