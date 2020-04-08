@@ -15,7 +15,7 @@ sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/theme
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
-cp -f ../mac80211-Snapshot.sh package/kernel/mac80211/files/lib/wifi/
+cp -f ../mac80211-Snapshot.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 替换banner
 rm -rf package/base-files/files/etc/banner
