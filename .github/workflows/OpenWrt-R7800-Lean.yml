@@ -246,9 +246,9 @@ jobs:
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
             🚀 Auto build | 自动编译
             🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})        
-            当前使用版本:（编译前的最后一次大雕源码更新记录）
-            ${{ github.event.commits[0].message }}
+            当前使用版本:（编译前的最后一次大雕源码更新记录）            
             ${{ env.useVersionInfo }}
+            ${{ github.event.commits[0].message }}
         files: ${{ env.FIRMWARE }}/*
 
     # 微信通知
@@ -258,4 +258,9 @@ jobs:
       with:
         SCKEY: ${{ secrets.SCKEY }}
         text: ${{ env.BRANCH }}固件编译完成！
-        desp: 源码:${{ env.REPO_URL }}
+        desp: | 
+             1、源码:${{ env.REPO_URL }}
+             2、分支：${{ env.REPO_BRANCH }}
+             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
+             🚀 Auto build | 自动编译
+             ${{ env.useVersionInfo }}
