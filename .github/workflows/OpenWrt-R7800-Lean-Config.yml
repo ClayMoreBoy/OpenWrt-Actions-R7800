@@ -117,11 +117,13 @@ jobs:
         path: ./artifact/
     
     - name: 微信通知
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       run: curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=R7800_Lean_Config_${{ env.DATE }}提取完成
     
     # 微信通知 By rohu168
     - name: Sending WeChat Notification
       uses: emon100/Action-Serverchan@master
       with:
+        SCKEY: ${{ secrets.SCKEY }}
         text: ${{ env.BRANCH }}固件编译完成！
         desp: 源码:${{ env.REPO_URL }}
