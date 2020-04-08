@@ -260,10 +260,11 @@ jobs:
             ${{ env.useVersionInfo }}
         files: ${{ env.FIRMWARE }}/*
 
-    # 微信通知 By rohu168
-    - name: Sending WeChat Notification
+    # 微信通知
+    - name: WeChat Notification
       if: env.SEND_WECHAT_MSG == 'true' && !cancelled()
       uses: emon100/Action-Serverchan@master
       with:
+        SCKEY: ${{ secrets.SCKEY }}
         text: ${{ env.BRANCH }}固件编译完成！
         desp: 源码:${{ env.REPO_URL }}
