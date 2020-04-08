@@ -263,8 +263,7 @@ jobs:
     # 微信通知 By rohu168
     - name: Sending WeChat Notification
       if: env.SEND_WECHAT_MSG == 'true' && !cancelled()
-      uses: yakumioto/serverchan-action@v1
+      uses: emon100/Action-Serverchan@master
       with:
-        key: ${{ secrets.SCKEY }}
         text: ${{ env.BRANCH }}固件编译完成！
         desp: 源码:${{ env.REPO_URL }}
