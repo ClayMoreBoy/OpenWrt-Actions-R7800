@@ -26,51 +26,42 @@ on:
 #    branches: 
 #       - master
 
-# Config 配置触发(本项目无该配置)
-#  paths:
-#    - 'x86_64.config'
-
 env:
   # 源
   REPO_URL: https://github.com/coolsnowwolf/lede
   # 分支
   REPO_BRANCH: master
-  # 脚本
-  DIY_SH: OpenWrt-R7800-Lean.sh
-  # 释放磁盘空间
-  FREE_UP_DISK: true
   # Lienol插件源
   LIENOL_PACKAGES: true
+  # 脚本
+  DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
   SSH_ACTIONS: false
-  # Github 用户名
-  GITHUB_USER_NAME: ClayMoreBoy
-  # Github 邮箱
-  GITHUB_USER_EMAIL: claymor3.sky@gmail.com
-  # Github
-  GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git
   # 上传分支
   UPLOAD_BRANCH: true
   # 分支
   BRANCH: R7800
-  # 上传插件包
-  UPLOAD_PACKAGES: true
+  # Github 用户名
+  GITHUB_USER_NAME: ClayMoreBoy
+  # Github 邮箱
+  GITHUB_USER_EMAIL: ${{ secrets.EMAIL }}
+  # Github
+  GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git
   # 上传固件
   UPLOAD_FIRMWARE: true
-  TARGET: ipq806x
-  SUBTARGET: generic
   # 上传到奶牛快传(暂时失效)
   UPLOAD_COWTRANSFER: false
   # 上传到TMP.link
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
-  # 编译者
-  BUILD_USER: ClayMoreBoy
+  TARGET: ipq806x
+  SUBTARGET: generic
   # 创建+上传发布
   CREATE_RELEASE: true
+  # 编译者
+  BUILD_USER: ClayMoreBoy
   # 微信通知
   SEND_WECHAT_MSG: true
-  TZ: Asia/Shanghai
 
 jobs:
   build:
@@ -87,23 +78,21 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo swapoff /swapfile
-        sudo rm -rf /swapfile /etc/apt/sources.list.d
-        sudo -E apt-get -qq update
-        sudo apt-get -y install asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache flex g++ gawk gcc gcc-multilib gettext git git-core help2man htop lib32gcc1 libc6-dev-i386 libglib2.0-dev libncurses5-dev libssl-dev libtool libz-dev libelf-dev make msmtp ncurses-term ocaml-nox p7zip p7zip-full patch qemu-utils sharutils subversion texinfo uglifyjs unzip upx xmlto yui-compressor zlib1g-dev make cmake device-tree-compiler  g++-multilib  python3.5
-        curl -fsSL https://github.com/ClayMoreBoy/dotfiles/raw/master/.bashrc >> ~/.bashrc
-
-    # 释放磁盘空间
-    - name: Free Up Disk Space
-      if: env.FREE_UP_DISK == 'true'
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        docker rmi `docker images -q`
-        sudo -E apt-get -q purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
-        sudo -E apt-get -qq autoremove --purge
-        sudo -E apt-get -qq clean
+        docker rmi $(docker images -q)
+        sudo -E swapoff /swapfile
+        sudo -E rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get remove -y --purge azure-cli ghc zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php* mssql-tools msodbcsql17
+        sudo -E apt-get update -y
+        sudo -E apt-get full-upgrade -y
+        sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-8 gcc++-8 gcc-8-multilib g++-8-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz device-tree-compiler
+        sudo -E ln -sf /usr/bin/gcc-8 /usr/bin/gcc
+        sudo -E ln -sf /usr/bin/g++-8 /usr/bin/g++
+        sudo -E ln -sf /usr/bin/gcc-ar-8 /usr/bin/gcc-ar
+        sudo -E ln -sf /usr/bin/gcc-nm-8 /usr/bin/gcc-nm
+        sudo -E ln -sf /usr/bin/gcc-ranlib-8 /usr/bin/gcc-ranlib
+        sudo -E apt-get autoremove -y --purge
+        sudo -E apt-get clean -y
+        sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php
 
     # 克隆源代码 By bobotoy
     - name: Clone source code
@@ -179,7 +168,7 @@ jobs:
           git config user.email $GITHUB_USER_EMAIL
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
-          git push --force --quiet https://$GITHUB_TOKEN@$GITHUB HEAD:OpenWrt_$BRANCH
+          git push --force --quiet https://$GITHUB_TOKEN@$GITHUB HEAD:OpenWrt-$BRANCH
     
     # 整理文件
     - name: Organize Files
@@ -188,6 +177,8 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
+        rm -rf *uImage
+        rm -rf *.manifest
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
     
@@ -213,9 +204,6 @@ jobs:
       if: env.UPLOAD_TMP_LINK == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        rm -rf packages
-        rm -f *.manifest
-        rm -f *uImage
         find . -maxdepth 1 ! -name "$DOWNLOAD_URL_FILE" -type f -exec echo {} >> $DOWNLOAD_URL_FILE \; -exec curl -k -F "file=@{}" -F "token=${{ secrets.TMP_LINK_TOKEN }}" -F "model=3" -X POST "https://connect.tmp.link/api_v2/cli_uploader" -s >> $DOWNLOAD_URL_FILE \;
         sed -i 's/\.\///g' $DOWNLOAD_URL_FILE
         sed -i '/^Upload.*/d' $DOWNLOAD_URL_FILE
