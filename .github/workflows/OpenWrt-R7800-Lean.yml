@@ -113,7 +113,7 @@ jobs:
     
     # 更新源
     - name: Update Feeds
-      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
+      if: env.LIENOL_PACKAGES == 'false'
       working-directory: ./openwrt
       run:  |
         ./scripts/feeds clean
@@ -121,7 +121,7 @@ jobs:
 
     # 安装源
     - name: Install Feeds
-      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
+      if: env.LIENOL_PACKAGES == 'false'
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
