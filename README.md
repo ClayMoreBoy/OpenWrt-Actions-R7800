@@ -5,7 +5,14 @@
 
 ## 简介：
 - 自用 OpenWrt 定制项目
-- 若 Fork 项目，请修改代码中自己的 TOKEN
+- 若 Fork 项目，请修改代码中自己的 TOKEN ( 项目 Settings/Secrets )
+
+| TOKEN | 释义 |
+| :--- | :--- |
+| -- EMAIL  | Github用户邮箱 |
+| -- TMP_LINK_TOKEN| TMP.link命令行上传文件-生成上传命令到剪贴板-token=xxxxxx |
+| -- SCKEY | Server酱SCKEY |
+| -- RELEASE_TOKEN | 个人 Settings/Developer settings/Personal access tokens新建获取 |
 
 ## 功能：
 - 可以支持三种编译模式 
