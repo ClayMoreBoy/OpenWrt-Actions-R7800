@@ -194,7 +194,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_firmware
+        name: OpenWrt-firmware-${{ env.BUILD_USER }}-${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
 
     # 上传固件到奶牛快传
