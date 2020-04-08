@@ -18,8 +18,8 @@ on:
 #    types: [published]
 
 # 点赞触发
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 # 编辑触发
 #  push:
@@ -47,6 +47,8 @@ env:
   GITHUB_USER_NAME: ClayMoreBoy
   # Github 邮箱
   GITHUB_USER_EMAIL: claymor3.sky@gmail.com
+  # Github
+  GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git
   # 上传分支
   UPLOAD_BRANCH: true
   # 分支
@@ -57,8 +59,8 @@ env:
   UPLOAD_FIRMWARE: true
   TARGET: ipq806x
   SUBTARGET: generic
-  # 上传到奶牛快传
-  UPLOAD_COWTRANSFER: true
+  # 上传到奶牛快传(暂时失效)
+  UPLOAD_COWTRANSFER: false
   # 上传到TMP.link
   UPLOAD_TMP_LINK: true
   DOWNLOAD_URL_FILE: Tmp-Link-Url.txt
@@ -67,7 +69,7 @@ env:
   # 创建+上传发布
   CREATE_RELEASE: true
   # 微信通知
-  SEND_WECHAT_MSG: false
+  SEND_WECHAT_MSG: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -177,7 +179,7 @@ jobs:
           git config user.email $GITHUB_USER_EMAIL
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
-          git push --force --quiet https://$GITHUB_TOKEN@github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git HEAD:OpenWrt_$BRANCH
+          git push --force --quiet https://$GITHUB_TOKEN@$GITHUB HEAD:OpenWrt_$BRANCH
     
     # 整理文件
     - name: Organize Files
@@ -233,7 +235,7 @@ jobs:
       id: tag
       if: env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
-        echo ::set-env name=RELEASE_NAME::"$(TZ=UTC-8 date +"%Y-%m-%d %H点")"
+        echo ::set-env name=RELEASE_NAME::"$(TZ=UTC-8 date +"%Y-%m-%d")"
         echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
         echo "::set-output name=status::success"
     
@@ -246,7 +248,6 @@ jobs:
       with:
         name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_NAME }}
         tag_name: ${{ env.RELEASE_DATE }}
-        body_path: release.txt
         body: |            
             1、本固件为自动编译
             2、发行版中只提供完整的固件
@@ -254,7 +255,7 @@ jobs:
             4、源码：${{ env.REPO_URL }}
             5、分支：${{ env.REPO_BRANCH }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
-            🚀 Auto build | 自动编译
+            🚀 Auto build | 自动编译        
             当前使用版本:（编译前的最后一次大雕源码更新记录）
             ${{ github.event.commits[0].message }}
             ${{ env.useVersionInfo }}
