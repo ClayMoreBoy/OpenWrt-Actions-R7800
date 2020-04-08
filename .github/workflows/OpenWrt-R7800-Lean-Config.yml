@@ -22,9 +22,9 @@ on:
 #    types: [started]
 
 # 编辑触发
-#  push:
-#    branches: 
-#      - master
+  push:
+    branches: 
+      - master
 
 # config触发
 #  paths:
@@ -40,7 +40,7 @@ env:
   DIY_SH: OpenWrt-R7800-Lean-Config.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
+  UPLOAD_CONFIG: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -67,8 +67,15 @@ jobs:
         sudo -E apt-get clean -y
         sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php
         
-    - name: 克隆源代码
-      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+    # 克隆源代码 By bobotoy
+    - name: Clone source code
+      run: |
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+        cd openwrt
+        useVersionInfo=$(git show -s --date=short --format="Author: %an<br/>Date: %cd<br/>Commit: %s")
+        echo "::set-env name=useVersionInfo::$useVersionInfo"
+        echo "::set-env name=DATE::$(date "+%Y%m%d")"
+        echo "::set-env name=RELEASE_DATE::$(date "+%Y-%m-%d")"
 
     - name: 更新源
       working-directory: ./openwrt
@@ -85,21 +92,10 @@ jobs:
         cd openwrt
         ../$DIY_SH
         make defconfig
-        
-    - name: 开启SSH远程连接
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
-    
-    - name: 上传BIN目录
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt-Bin-Dev
-        path: openwrt/bin
 
     - name: 整理文件
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_CONFIG == 'true' && !cancelled()
       run: |
           rm -rf ./artifact/
           mkdir -p ./artifact/
@@ -113,13 +109,18 @@ jobs:
     - name: 上传配置
       uses: actions/upload-artifact@master
       with:
-        name: OpenWrt-Firmware-R7800-Lean-Config(配置)-${{ env.DATE }}
+        name: OpenWrt-Lean-Config-R7800-${{ env.DATE }}
         path: ./artifact/    
 
-    # 微信通知 By rohu168
-    - name: Sending WeChat Notification
+    # 微信通知
+    - name: WeChat Notification      
       uses: emon100/Action-Serverchan@master
       with:
         SCKEY: ${{ secrets.SCKEY }}
         text: ${{ env.BRANCH }}固件编译完成！
-        desp: 源码:${{ env.REPO_URL }}
+        desp: | 
+             1、源码:${{ env.REPO_URL }}
+             2、分支：${{ env.REPO_BRANCH }}
+             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
+             🚀 Auto build | 自动编译
+             ${{ env.useVersionInfo }}
