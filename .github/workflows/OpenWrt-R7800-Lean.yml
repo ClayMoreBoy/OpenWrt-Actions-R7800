@@ -177,7 +177,7 @@ jobs:
           git config user.email $GITHUB_USER_EMAIL
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
-          git push --force --quiet https://$GITHUB_TOKEN@@github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git HEAD:OpenWrt_$BRANCH
+          git push --force --quiet https://$GITHUB_TOKEN@github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git HEAD:OpenWrt_$BRANCH
     
     # 整理文件
     - name: Organize Files
@@ -234,6 +234,7 @@ jobs:
       if: env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
         echo ::set-env name=RELEASE_NAME::"$(TZ=UTC-8 date +"%Y-%m-%d %H点")"
+        echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
         echo "::set-output name=status::success"
     
     # 发行固件
@@ -245,6 +246,7 @@ jobs:
       with:
         name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_NAME }}
         tag_name: ${{ env.RELEASE_DATE }}
+        body_path: release.txt
         body: |            
             1、本固件为自动编译
             2、发行版中只提供完整的固件
@@ -253,7 +255,6 @@ jobs:
             5、分支：${{ env.REPO_BRANCH }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
             🚀 Auto build | 自动编译
-            🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})
             当前使用版本:（编译前的最后一次大雕源码更新记录）
             ${{ github.event.commits[0].message }}
             ${{ env.useVersionInfo }}
