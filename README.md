@@ -22,7 +22,7 @@
 - 自动发布固件
 - 自动创建分支
 - 自动上传到TMP.link
-- 自动上传到奶牛快传(暂时失效)
+- 自动上传到奶牛快传
 
 ## 变量：
 
@@ -39,7 +39,7 @@
 | -- GITHUB_USER_EMAIL: ${{ secrets.EMAIL }} |定义Github用户邮箱 |
 | -- GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git | 定义上传分支 |
 | -- UPLOAD_FIRMWARE: true | 是否上传固件| 
-| -- UPLOAD_COWTRANSFER: false | 是否上传固件到奶牛快传 |
+| -- UPLOAD_COWTRANSFER: true | 是否上传固件到奶牛快传 |
 | -- UPLOAD_TMP_LINK: true| 上传到TMP.link |
 | -- TARGET: ipq806x | 定义TARGET |
 | -- SUBTARGET: generic | 定义SUBTARGET |
