@@ -102,8 +102,8 @@ jobs:
         cd openwrt
         useVersionInfo=$(git show -s --date=short --format="Author: %an<br/>Date: %cd<br/>Commit: %s")
         echo "::set-env name=useVersionInfo::$useVersionInfo"
-        echo "::set-env name=DATE::$(date "+%Y%m%d")"
-        echo "::set-env name=RELEASE_DATE::$(date "+%Y-%m-%d")"
+        echo "::set-env name=DATE::$(TZ=UTC-8 date "+%Y%m%d")"
+        echo "::set-env name=RELEASE_DATE::$(TZ=UTC-8 date "+%Y-%m-%d")"
 
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
@@ -224,7 +224,6 @@ jobs:
       id: tag
       if: env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
-        echo ::set-env name=RELEASE_NAME::"$(TZ=UTC-8 date +"%Y-%m-%d")"
         echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
         echo "::set-output name=status::success"
     
@@ -235,7 +234,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_NAME }}
+        name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
         tag_name: ${{ env.RELEASE_DATE }}
         body: |            
             1、本固件为自动编译
