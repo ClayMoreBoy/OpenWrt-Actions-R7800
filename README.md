@@ -16,9 +16,9 @@
 | -- RELEASE_TOKEN | 个人 Settings/Developer settings/Personal access tokens新建获取 |
 
 ## 功能：
-- 可以支持三种编译模式 
-  1. 编译Lean源码 & Lienol Package(目前在用)
-  2. 编译CTCGFW源码(含Lean & Lienol & Ntlf9t & Zxlhhyccc Package)(待测)
+- 可以支持两种种编译模式
+  1. 编译Lean源码 & Lienol Package
+  2. 编译CTCGFW源码(含Lean & Lienol & Ntlf9t & Zxlhhyccc Package)
 - 自动上传固件
 - 自动发布固件
 - 自动创建分支
