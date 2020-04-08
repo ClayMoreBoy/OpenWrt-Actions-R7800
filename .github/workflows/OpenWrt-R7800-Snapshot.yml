@@ -235,7 +235,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
         name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
-        tag_name: ${{ env.RELEASE_DATE }}
+        tag_name: ${{ env.RELEASE_DATE }}-S
         body: |            
             1、本固件为自动编译
             2、发行版中只提供完整的固件
