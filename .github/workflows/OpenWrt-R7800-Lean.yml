@@ -169,7 +169,7 @@ jobs:
           git config user.email $GITHUB_USER_EMAIL
           git add .
           git commit -m "Update OpenWrt_"$BRANCH
-          git push --force --quiet https://$GITHUB_TOKEN@$GITHUB HEAD:OpenWrt-$BRANCH
+          git push --force --quiet https://${{ secrets.RELEASE_TOKEN }}@$GITHUB HEAD:OpenWrt-$BRANCH
     
     # 整理文件
     - name: Organize Files
@@ -188,7 +188,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt-Firmware-{{ env.BRANCH }}-${{ env.BUILD_USER }}-${{ env.DATE }}
+        name: OpenWrt-Firmware-${{ env.BRANCH }}-${{ env.BUILD_USER }}-${{ env.DATE }}
         path: ${{ env.FIRMWARE }}
 
     # 上传固件到奶牛快传
