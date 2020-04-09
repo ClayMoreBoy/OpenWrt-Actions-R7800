@@ -28,10 +28,9 @@ on:
 
 env:
   # 源
-  REPO_URL: https://github.com/coolsnowwolf/lede
-#  REPO_URL: https://github.com/project-openwrt/openwrt
+  REPO_URL: https://github.com/project-openwrt/openwrt
   # 分支
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-18.06-dev
   # Lienol插件源
   LIENOL_PACKAGES: true
   # 脚本
