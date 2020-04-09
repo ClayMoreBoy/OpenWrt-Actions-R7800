@@ -8,10 +8,7 @@
 #=================================================
 
 # 取掉默认主题
-sed -i '/\+luci-theme-bootstrap/d' feeds/luci/collections/luci/Makefile
-sed -i '/\+luci-theme-bootstrap/d' package/feeds/luci/luci/Makefile
-sed -i '/CONFIG_PACKAGE_luci-theme-bootstrap=y/d' .config
-sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
+sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
