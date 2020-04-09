@@ -41,7 +41,7 @@ sed -i 's/V2020/V$(TZ=UTC-8 date "+%Y.%m.%d")/g' package/base-files/files/etc/ba
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-# git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
+git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
 git clone https://github.com/pymumu/smartdns.git package/smartdns
 git clone https://github.com/Apocalypsor/luci-app-smartdns.git package/luci-app-smartdns
 
@@ -231,9 +231,9 @@ EOF
 # LuCI主题:
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-theme-argon is not set
-# CONFIG_PACKAGE_luci-theme-atmaterial is not set
+CONFIG_PACKAGE_luci-theme-atmaterial=y
 # CONFIG_PACKAGE_luci-theme-bootstrap is not set
-CONFIG_PACKAGE_luci-theme-material=y
+# CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 # CONFIG_PACKAGE_luci-theme-rosy is not set
