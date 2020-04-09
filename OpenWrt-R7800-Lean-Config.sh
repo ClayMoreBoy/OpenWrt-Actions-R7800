@@ -57,6 +57,13 @@ touch ./.config
 # 
 
 # 编译R7800固件:
+#cat >> .config <<EOF
+#CONFIG_TARGET_ipq806x=y
+#CONFIG_TARGET_ipq806x_generic=y
+#CONFIG_TARGET_ipq806x_generic_DEVICE_netgear_r7800=y
+#EOF
+
+# 编译R7800固件:
 cat >> .config <<EOF
 CONFIG_TARGET_ipq806x=y
 CONFIG_TARGET_ipq806x_DEVICE_netgear_r7800=y
