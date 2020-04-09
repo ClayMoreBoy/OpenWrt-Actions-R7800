@@ -38,7 +38,7 @@ env:
   # 上传分支
   UPLOAD_BRANCH: true
   # 分支
-  BRANCH: R7800
+  BRANCH: R7800-Lean
   # Github 用户名
   GITHUB_USER_NAME: ClayMoreBoy
   # Github 邮箱
