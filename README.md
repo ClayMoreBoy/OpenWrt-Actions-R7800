@@ -17,8 +17,8 @@
 
 ## 功能：
 - 可以支持两种种编译模式
-  1. 编译Lean源码 & Lienol Package
-  2. 编译CTCGFW源码(含Lean & Lienol & Ntlf9t & Zxlhhyccc Package)
+  1. 编译CTCGFW源码18.06-dev分支(含Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
+  2. 编译CTCGFW源码master分支(含Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
 - 自动上传固件
 - 自动发布固件
 - 自动创建分支
@@ -31,7 +31,6 @@
 | :--- | :--- |
 | -- REPO_URL: https://github.com/coolsnowwolf/lede.git  | 定义源码 |
 | -- REPO_BRANCH: master | 定义分支 |
-| -- LIENOL_PACKAGES: true | 是否包含Lienol's package |
 | -- DIY_SH: OpenWrt-R7800-Lean.sh | 定义脚本文件 |
 | -- SSH_ACTION: false |是否打开 SSH |
 | -- UPLOAD_BRANCH: true | 是否创建分支来存放编译固件及Package |
