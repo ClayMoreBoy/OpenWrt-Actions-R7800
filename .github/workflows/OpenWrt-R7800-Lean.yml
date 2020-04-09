@@ -234,7 +234,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
+        name: Netgear ${{ env.BRANCH }} 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
         tag_name: ${{ env.RELEASE_DATE }}
         body: |            
             1、本固件为自动编译
