@@ -220,7 +220,6 @@ jobs:
       id: tag
       if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
       run: |
-        echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
         echo "::set-output name=status::success"
     
     # 发行固件
@@ -230,7 +229,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: Netgear R7800 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
+        name: Netgear ${{ env.BRANCH }} 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
         tag_name: ${{ env.RELEASE_DATE }}-S
         body: |            
             1、本固件为自动编译
