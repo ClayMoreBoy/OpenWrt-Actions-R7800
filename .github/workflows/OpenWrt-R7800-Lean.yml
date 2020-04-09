@@ -31,8 +31,6 @@ env:
   REPO_URL: https://github.com/project-openwrt/openwrt
   # 分支
   REPO_BRANCH: openwrt-18.06-dev
-  # Lienol插件源
-  LIENOL_PACKAGES: true
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
@@ -104,12 +102,6 @@ jobs:
         echo "::set-env name=DATE::$(TZ=UTC-8 date "+%Y%m%d")"
         echo "::set-env name=RELEASE_DATE::$(TZ=UTC-8 date "+%Y-%m-%d")"
 
-    # 增加 PassWall 插件源 By rohu168
-    - name: Update and install feeds passwall
-      if: env.LIENOL_PACKAGES == 'true' && env.REPO_URL != 'https://github.com/project-openwrt/openwrt'
-      run: |
-        chmod +x passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./passwall.sh
-    
     # 更新源
     - name: Update Feeds
       if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
