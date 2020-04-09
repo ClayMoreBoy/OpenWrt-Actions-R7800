@@ -46,7 +46,7 @@ sed -i 's/V2020/V$(TZ=UTC-8 date "+%Y.%m.%d")/g' package/lean/default-settings/f
 sed -i 's/Lean/Snapshot/g' package/base-files/files/etc/banner
 
 # 修改版本号
-sed -i 's/V2020/V$(TZ=UTC-8 date "+%Y.%m.%d")/g' package/base-files/files/etc/banner
+sed -i 's/V2020/V$(shell date +%Y.%m.%d)/g' package/base-files/files/etc/banner
 
 # 创建自定义配置文件 - OpenWrt-R7800
 
