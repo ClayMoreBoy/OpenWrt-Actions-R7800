@@ -38,7 +38,7 @@ sed -i 's/V2020/V$$(shell date +%Y.%m.%d)/g' package/base-files/files/etc/banner
 # git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 # git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
+# git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
 # git clone https://github.com/pymumu/smartdns.git package/smartdns
 # git clone https://github.com/Apocalypsor/luci-app-smartdns.git package/luci-app-smartdns
 
