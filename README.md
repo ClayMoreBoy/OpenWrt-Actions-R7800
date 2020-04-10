@@ -54,7 +54,8 @@
 ###       Wifi密码:password
 
 ## 固件下载
-网件R7800：[点此下载](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/releases)
+网件R7800：[![GitHub release (latest by date)](https://img.shields.io/github/v/release/ClayMoreBoy/OpenWrt-Actions-R7800?style=for-the-badge&label=Download)](https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800/releases/latest)
+
 
 ## 来杯咖啡
 
