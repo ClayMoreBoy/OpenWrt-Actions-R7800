@@ -117,6 +117,7 @@ CONFIG_PACKAGE_ddns-scripts_aliyun=y #DDNS服务
 CONFIG_PACKAGE_ddns-scripts_dnspod=y #DDNS服务
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-filebrowser is not set #文件浏览器
+CONFIG_PACKAGE_luci-app-arpbind=y #IP/MAC绑定
 EOF
 
 # Passwall插件:
