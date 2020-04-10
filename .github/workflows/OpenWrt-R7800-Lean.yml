@@ -174,7 +174,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt-Firmware-${{ env.BRANCH }}-${{ env.BUILD_USER }}-${{ env.DATE }}
+        name: ${{ env.BUILD_USER }}-${{ env.DATE }}-OpenWrt-${{ env.BRANCH }}-Firmware
         path: ${{ env.FIRMWARE }}
 
     # 上传固件到奶牛快传
