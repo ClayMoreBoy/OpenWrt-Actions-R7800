@@ -198,9 +198,8 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告
-# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
 # CONFIG_PACKAGE_luci-app-filebrowser is not set #文件浏览器
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 # CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
@@ -208,7 +207,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #KMS激活服务器
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP服务器
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
@@ -219,7 +218,6 @@ CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-zerotier is not set #ZeroTier内网穿透
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set #访问时间控制
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
-# CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
