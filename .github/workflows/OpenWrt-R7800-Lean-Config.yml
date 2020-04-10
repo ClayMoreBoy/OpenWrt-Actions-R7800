@@ -6,12 +6,12 @@
 # Github: https://github.com/ClayMoreBoy
 #=================================================
 
-name: OpenWrt-R7800-Lean-Config(配置提取)
+name: OpenWrt-R7800-Lean-Config
 
 on:
 # 定时触发
   schedule:
-    - cron: 0 01 * * 5
+    - cron: 0 01 */31 * *
 
 # release触发
 #  release:
