@@ -117,10 +117,4 @@ jobs:
       uses: emon100/Action-Serverchan@master
       with:
         SCKEY: ${{ secrets.SCKEY }}
-        text: ${{ env.BRANCH }}固件编译完成！
-        desp: | 
-             1、源码:${{ env.REPO_URL }}
-             2、分支：${{ env.REPO_BRANCH }}
-             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
-             🚀 Auto build | 自动编译
-             ${{ env.useVersionInfo }}
+        text: 配置提取完成！
