@@ -163,6 +163,7 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && steps.compile.outputs.status == 'success'
       run: |
         cd openwrt/bin/targets/*/*
+        mv ./openwrt/.config ./openwrt/bin/targets/*/*/.config
         rm -rf packages
         rm -rf *uImage
         rm -rf *.manifest
