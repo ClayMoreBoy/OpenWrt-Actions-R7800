@@ -29,10 +29,10 @@ sed -i 's/or "1"%>/or "1"%> ( <%=luci.sys.exec("expr `cat \/sys\/class\/thermal\
 sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=ClayMoreBoy-$(shell date +%Y%m%d)-$(VERSION_DIST_SANITIZED)/g' include/image.mk
 
 # 修改版本号
-sed -i 's/V2020/V$(date "+%Y.%m.%d")/g' package/lean/default-settings/files/zzz-default-settings
+# sed -i 's/V2020/V$(date "+%Y.%m.%d")/g' package/lean/default-settings/files/zzz-default-settings
 
 # 修改版本号
-sed -i 's/V2020/V$(shell date +%Y.%m.%d)/g' package/base-files/files/etc/banner
+# sed -i 's/V2020/V$(shell date +%Y.%m.%d)/g' package/base-files/files/etc/banner
 
 # 添加第三方软件包
 # git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
