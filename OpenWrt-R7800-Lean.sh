@@ -7,7 +7,8 @@
 #=================================================
 
 # 取掉默认主题
-sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
+sed -i 's/\+luci-theme-bootstrap/\+luci-theme-atmaterial \+uhttpd-mod-lua/g' $basedir/feeds/luci/collections/luci/Makefile
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -231,7 +232,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-theme-argon is not set
 CONFIG_PACKAGE_luci-theme-atmaterial=y
 # CONFIG_PACKAGE_luci-theme-bootstrap is not set
-CONFIG_PACKAGE_luci-theme-material=y
+# CONFIG_PACKAGE_luci-theme-material=y
 # CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 # CONFIG_PACKAGE_luci-theme-rosy is not set
