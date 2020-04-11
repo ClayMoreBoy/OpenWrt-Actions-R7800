@@ -167,6 +167,7 @@ jobs:
         rm -rf packages
         rm -rf *uImage
         rm -rf *.manifest
+        rm -rf *.seed
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
     
