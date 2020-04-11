@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# 默认主题
 uci set luci.main.lang=zh_cn
-uci set luci.main.mediaurlbase=/luci-static/material
 uci commit luci
 
 # 固件名称
