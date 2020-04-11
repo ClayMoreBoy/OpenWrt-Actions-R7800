@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# 默认主题
 uci set luci.main.lang=zh_cn
 uci commit luci
 
