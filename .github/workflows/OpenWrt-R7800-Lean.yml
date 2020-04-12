@@ -30,7 +30,7 @@ env:
   # 源
   REPO_URL: https://github.com/project-openwrt/openwrt
   # 分支
-  REPO_BRANCH: openwrt-18.06-dev
+  REPO_BRANCH: openwrt-18.06
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
