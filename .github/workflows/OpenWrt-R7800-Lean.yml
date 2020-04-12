@@ -145,7 +145,7 @@ jobs:
     
     # 上传到分支 By yfdoor
     - name: Upload Branch
-      if: env.UPLOAD_BRANCH == 'true' && steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BRANCH == 'true' && !cancelled() 
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
@@ -160,7 +160,7 @@ jobs:
     # 整理文件
     - name: Organize Files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         mv openwrt/.config openwrt/bin/targets/*/*
         cd openwrt/bin/targets/*/*
@@ -181,16 +181,24 @@ jobs:
 
     # 上传固件到奶牛快传
     - name: Upload Firmware To CowTransfer
-      if: env.UPLOAD_COWTRANSFER == 'true' && steps.compile.outputs.status == 'success'
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
-        curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -b 2621440 -s -p 99 -t 3 --hash ${FIRMWARE} > cowtransfer.txt
-        cat cowtransfer.txt
-        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.txt | grep https | cut -f2 -d" ")"
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
     
+    - name: Upload firmware to WeTransfer
+      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
+        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
+        echo "::set-env name=WETRANSFER_URL::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
+
     # 上传文件到Tmp.Link By SuLingGG
     - name: Upload Firmwares To Tmp.Link
-      if: env.UPLOAD_TMP_LINK == 'true' && steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
         find . -maxdepth 1 ! -name "$DOWNLOAD_URL_FILE" -type f -exec echo {} >> $DOWNLOAD_URL_FILE \; -exec curl -k -F "file=@{}" -F "token=${{ secrets.TMP_LINK_TOKEN }}" -F "model=3" -X POST "https://connect.tmp.link/api_v2/cli_uploader" -s >> $DOWNLOAD_URL_FILE \;
@@ -202,7 +210,7 @@ jobs:
     # 上传下载地址文件
     - name: Upload Download Url File
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true'
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_TMP_LINK == 'true' && !cancelled()
       with:
         name: ${{ env.DOWNLOAD_URL_FILE }}
         path: openwrt/bin/targets/${{ env.TARGET }}/${{ env.SUBTARGET }}/${{ env.DOWNLOAD_URL_FILE }}
@@ -210,9 +218,9 @@ jobs:
     # 生成标签
     - name: Generate Tag
       id: tag
-      if: env.CREATE_RELEASE == 'true' && steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
-        echo "🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})" >> release.txt
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d-%H")"
         echo "::set-output name=status::success"
     
     # 发行固件
@@ -222,7 +230,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: Netgear ${{ env.BRANCH }} 🚀 | 自动编译 / ${{ env.RELEASE_DATE }}
+        name: Netgear ${{ env.BRANCH }} 🚀 | 自动编译 / ${{ env.RELEASE_TAG }}
         tag_name: ${{ env.RELEASE_DATE }}
         body: |            
             1、本固件为自动编译
@@ -231,7 +239,8 @@ jobs:
             4、源码：${{ env.REPO_URL }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
             🚀 Auto build | 自动编译
-            🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})        
+            🔗 [Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }}) 
+            🔗 [WeTransfer](${{ env.WETRANSFER_URL }})       
             当前使用版本:（编译前的最后一次大雕源码更新记录）            
             ${{ env.useVersionInfo }}
             ${{ github.event.commits[0].message }}
@@ -239,7 +248,7 @@ jobs:
 
     # 微信通知
     - name: WeChat Notification
-      if: env.SEND_WECHAT_MSG == 'true' && steps.compile.outputs.status == 'success'
+      if: steps.compile.outputs.status == 'success' && env.SEND_WECHAT_MSG == 'true' && !cancelled()
       uses: emon100/Action-Serverchan@master
       with:
         SCKEY: ${{ secrets.SCKEY }}
