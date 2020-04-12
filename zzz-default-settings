@@ -10,7 +10,7 @@ uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
 
 # 默认开启网络加速
-uci set flowoffload.@flow[0]=flow
+uci set flowoffload.@flow[0].flow_offloading=1
 uci set flowoffload.@flow[0].bbr=1
 uci set flowoffload.@flow[0].dns=1
 uci commit flowoffload
