@@ -184,6 +184,65 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
 EOF
 
+# ssr-plus-Jo(禁用):
+cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Shadowsocks is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_V2ray is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Kcptun is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ShadowsocksR_Server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Shadowsocks_Server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ShadowsocksR_Socks is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Shadowsocks_Socks is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ipt2socks is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_dnscrypt_proxy is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_dnsforwarder is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ChinaDNS is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_haproxy is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_privoxy is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_simple-obfs is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_simple-obfs-server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_udpspeeder is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_udp2raw-tunnel is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_GoQuiet-client is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_GoQuiet-server is not set
+# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_v2ray-plugin is not set
+# CONFIG_PACKAGE_luci-app-vssr is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Shadowsocks is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_V2ray is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Shadowsocks_Server is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Socks is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Shadowsocks_Socks is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ipt2socks is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_microsocks is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_dns2socks is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_dnscrypt_proxy is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_dnsforwarder is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ChinaDNS is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_haproxy is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_privoxy is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_simple-obfs is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_simple-obfs-server is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_udpspeeder is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_udp2raw-tunnel is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_GoQuiet-client is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_GoQuiet-server is not set
+# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_v2ray-plugin is not set
+# CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs is not set
+# CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk is not set
+# CONFIG_PACKAGE_luci-app-dockerman_INCLUDE_ttyd is not set
+# CONFIG_POSTFIX_TLS is not set
+# CONFIG_POSTFIX_SASL is not set
+# CONFIG_POSTFIX_LDAP is not set
+# CONFIG_POSTFIX_CDB is not set
+# CONFIG_POSTFIX_SQLITE is not set
+# CONFIG_POSTFIX_PCRE is not set
+EOF
+
 # VPN相关插件(禁用):
 cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
