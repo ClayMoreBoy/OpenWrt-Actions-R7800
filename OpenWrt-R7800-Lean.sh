@@ -8,7 +8,8 @@
 
 # 取掉默认主题
 # sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
-sed -i 's/\+luci-theme-bootstrap/\+luci-theme-atmaterial \+uhttpd-mod-lua/g' $basedir/feeds/luci/collections/luci/Makefile
+sed -i 's/\+luci-theme-bootstrap/\+luci-theme-atmaterial \+uhttpd-mod-lua/g' feeds/luci/collections/luci/Makefile
+sed -i 's/LuCI $$branch branch/LuCI Master/g' feeds/luci/luci.mk
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -223,7 +224,7 @@ CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
-CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
+# CONFIG_PACKAGE_luci-app-netdata is not set #Netdata实时监控(图表)
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 EOF
 
