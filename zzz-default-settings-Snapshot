@@ -9,22 +9,6 @@ uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 uci commit system
 
-# 默认开启网络加速
-uci set flowoffload.@flow[0]=flow
-uci set flowoffload.@flow[0].bbr=1
-uci set flowoffload.@flow[0].dns=1
-uci commit flowoffload
-
-# 设置默认管理IP地址
-# uci set network.lan.ipaddr='10.0.0.1'
-# uci set network.lan.netmask='255.255.255.0'
-# uci set network.lan.delegate='0'
-# uci set network.wan.delegate='0'
-# uci commit network
-
-# 默认开启解锁网易云灰色歌曲
-uci set unblockmusic.@unblockmusic[0].enabled=1
-
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
@@ -34,7 +18,7 @@ rm -f /usr/lib/lua/luci/view/admin_status/index/ddns.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/minidlna.htm
 
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/aria2.lua
-sed -i 's/services/nas/g' /usr/lib/lua/luci/view/aria2/overview_status.htm
+sed -i 's#admin/services#admin/nas#g' /usr/lib/lua/luci/view/aria2/settings_header.htm
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/hd_idle.lua
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/minidlna.lua
 sed -i 's/\"services\"/\"nas\"/g' /usr/lib/lua/luci/controller/transmission.lua
