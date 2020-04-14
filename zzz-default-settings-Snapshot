@@ -16,11 +16,11 @@ uci set flowoffload.@flow[0].dns=1
 uci commit flowoffload
 
 # 设置默认管理IP地址
-uci set network.lan.ipaddr='10.0.0.1'
-uci set network.lan.netmask='255.255.255.0'
-uci set network.lan.delegate='0'
-uci set network.wan.delegate='0'
-uci commit network
+# uci set network.lan.ipaddr='10.0.0.1'
+# uci set network.lan.netmask='255.255.255.0'
+# uci set network.lan.delegate='0'
+# uci set network.wan.delegate='0'
+# uci commit network
 
 # 默认开启解锁网易云灰色歌曲
 uci set unblockmusic.@unblockmusic[0].enabled=1
