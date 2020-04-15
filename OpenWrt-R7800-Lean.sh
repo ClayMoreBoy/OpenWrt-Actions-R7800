@@ -278,7 +278,7 @@ CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
 # CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
 # CONFIG_PACKAGE_luci-app-zerotier is not set #ZeroTier内网穿透
-# CONFIG_PACKAGE_luci-app-accesscontrol is not set #访问时间控制
+CONFIG_PACKAGE_luci-app-accesscontrol=y #访问时间控制
 # CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
