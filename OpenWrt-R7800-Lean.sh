@@ -7,10 +7,7 @@
 #=================================================
 
 # 取掉默认主题
-# sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
-sed -i 's/\+luci-theme-bootstrap/\+luci-theme-atmaterial \+uhttpd-mod-lua/g' feeds/luci/collections/luci/Makefile
-# sed -i 's/dhcp.lan.dhcpv6=$MODE/dhcp.lan.dhcpv6=1/g' package/network/services/odhcpd/files/odhcpd.defaults
-# sed -i 's/dhcp.lan.ra=$MODE/dhcp.lan.ra=disabled/g' package/network/services/odhcpd/files/odhcpd.defaults
+sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile 
 
 # WIFI名为MAC后六位
 rm -rf package/kernel/mac80211/files/lib/wifi/mac80211.sh
@@ -38,12 +35,14 @@ sed -i 's/V2020/V$(shell date +%Y%m%d)/g' package/base-files/files/etc/banner
 
 # 添加第三方软件包
 # git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
-# git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
-# git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
+git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
+git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 # git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
 # git clone https://github.com/pymumu/smartdns.git package/smartdns
 # git clone https://github.com/Apocalypsor/luci-app-smartdns.git package/luci-app-smartdns
+git clone https://github.com/ujincn/smartdns.git package/smartdns
+git clone https://github.com/ujincn/luci-app-smartdns-compat.git package/luci-app-smartdns-compat
 
 # 创建自定义配置文件 - OpenWrt-R7800
 
@@ -125,7 +124,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
-# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
+CONFIG_PACKAGE_luci-app-smartdns-compat=y #SmartDns服务
 EOF
 
 # Lean插件选择:
@@ -140,12 +139,11 @@ EOF
 
 # 常用LuCI插件(禁用):
 cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-smartdns is not set #SmartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-unblockneteasemusic-go is not set #解锁网易云灰色歌曲
 CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
-# CONFIG_PACKAGE_luci-app-mwan3helper is not set #多拨负载均衡
-# CONFIG_PACKAGE_luci-app-mwan3 is not set #多线多拨
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
 EOF
