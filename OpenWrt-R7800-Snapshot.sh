@@ -99,7 +99,7 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
-CONFIG_PACKAGE_luci-app-smartdns=y #SmartDnsDNS服务
+# CONFIG_PACKAGE_luci-app-smartdns is not set #SmartDnsDNS服务
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
 CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
