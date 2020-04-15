@@ -28,9 +28,9 @@ on:
 
 env:
   # 源
-  REPO_URL: https://github.com/project-openwrt/openwrt
+  REPO_URL: https://github.com/coolsnowwolf/lede
   # 分支
-  REPO_BRANCH: openwrt-18.06
+  REPO_BRANCH: master
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
