@@ -126,7 +126,7 @@ cat >> .config <<EOF
 # CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
-CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
+# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 EOF
 
 # Lean插件选择:
