@@ -9,7 +9,6 @@
 # 取掉默认主题
 # sed -i 's/ +luci-theme-bootstrap//g' feeds/luci/collections/luci/Makefile
 sed -i 's/\+luci-theme-bootstrap/\+luci-theme-atmaterial \+uhttpd-mod-lua/g' feeds/luci/collections/luci/Makefile
-sed -i 's/LuCI $$branch branch/LuCI Master/g' feeds/luci/luci.mk
 # sed -i 's/dhcp.lan.dhcpv6=$MODE/dhcp.lan.dhcpv6=1/g' package/network/services/odhcpd/files/odhcpd.defaults
 # sed -i 's/dhcp.lan.ra=$MODE/dhcp.lan.ra=disabled/g' package/network/services/odhcpd/files/odhcpd.defaults
 
