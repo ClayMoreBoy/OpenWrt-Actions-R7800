@@ -19,8 +19,8 @@ rm -rf package/base-files/files/etc/banner
 cp -f ../banner package/base-files/files/etc/
 
 # 自定义固件
-rm -rf package/lean/default-settings/files/zzz-default-settings
-cp -f ../zzz-default-settings-Snapshot package/lean/default-settings/files/zzz-default-settings
+# rm -rf package/lean/default-settings/files/zzz-default-settings
+# cp -f ../zzz-default-settings-Snapshot package/lean/default-settings/files/zzz-default-settings
 
 # 替换ipq806x/Makefile
 rm -rf target/linux/ipq806x/Makefile
@@ -40,7 +40,7 @@ sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=ClayMoreBoy-$(shell 
 # sed -i 's/V2020/V$(date "+%Y.%m.%d")/g' package/lean/default-settings/files/zzz-default-settings
 
 # 切换
-sed -i 's/Lean/Snapshot/g' package/base-files/files/etc/banner
+# sed -i 's/Lean/Snapshot/g' package/base-files/files/etc/banner
 
 # 修改版本号
 # sed -i 's/V2020/V$(shell date +%Y.%m.%d)/g' package/base-files/files/etc/banner
