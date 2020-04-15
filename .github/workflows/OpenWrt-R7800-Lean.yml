@@ -57,7 +57,7 @@ env:
   TARGET: ipq806x
   SUBTARGET: generic
   # 创建+上传发布
-  CREATE_RELEASE: false
+  CREATE_RELEASE: true
   # 编译者
   BUILD_USER: ClayMoreBoy
   # 微信通知
