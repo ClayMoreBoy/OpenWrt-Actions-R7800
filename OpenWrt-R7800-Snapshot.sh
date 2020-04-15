@@ -19,8 +19,8 @@ rm -rf package/base-files/files/etc/banner
 cp -f ../banner package/base-files/files/etc/
 
 # 自定义固件
-# rm -rf package/lean/default-settings/files/zzz-default-settings
-# cp -f ../zzz-default-settings-Snapshot package/lean/default-settings/files/zzz-default-settings
+rm -rf package/lean/default-settings/files/zzz-default-settings
+cp -f ../zzz-default-settings-Snapshot package/lean/default-settings/files/zzz-default-settings
 
 # 替换ipq806x/Makefile
 rm -rf target/linux/ipq806x/Makefile
