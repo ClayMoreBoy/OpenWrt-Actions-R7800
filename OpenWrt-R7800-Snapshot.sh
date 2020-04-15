@@ -122,20 +122,20 @@ EOF
 
 # Passwall插件:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
+# CONFIG_PACKAGE_luci-app-passwall is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
 # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
 EOF
