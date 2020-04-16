@@ -31,18 +31,16 @@ sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=ClayMoreBoy-$(shell 
 sed -i 's/V2020/V$(date "+%Y.%m.%d")/g' package/lean/default-settings/files/zzz-default-settings
 
 # 修改版本号
-sed -i 's/V2020/V$(shell date +%Y%m%d)/g' package/base-files/files/etc/banner
+sed -i 's/V2020/V${{ env.DATE }}/g' package/base-files/files/etc/banner
 
 # 添加第三方软件包
 # git clone https://github.com/ClayMoreBoy/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/ClayMoreBoy/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/ClayMoreBoy/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/sypopo/luci-theme-atmaterial.git package/luci-theme-atmaterial
-# git clone https://github.com/pymumu/smartdns.git package/smartdns
-# git clone https://github.com/Apocalypsor/luci-app-smartdns.git package/luci-app-smartdns
 git clone https://github.com/ujincn/smartdns.git package/smartdns
 git clone https://github.com/ujincn/luci-app-smartdns-compat.git package/luci-app-smartdns-compat
+svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-theme-atmaterial package/luci-theme-atmaterial
 
 # 创建自定义配置文件 - OpenWrt-R7800
 
