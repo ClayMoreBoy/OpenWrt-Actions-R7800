@@ -173,6 +173,7 @@ jobs:
         rm -rf *uImage
         rm -rf *.manifest
         rm -rf *.seed
+        rm -rf *.buildinfo
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
     
