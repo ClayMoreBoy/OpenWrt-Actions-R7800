@@ -81,6 +81,7 @@ jobs:
     - name: Update Feeds
       working-directory: ./openwrt
       run:  |
+        echo "src-git helloworld https://github.com/fw876/helloworld" >> feeds.conf.default
         ./scripts/feeds clean
         ./scripts/feeds update -a
     
