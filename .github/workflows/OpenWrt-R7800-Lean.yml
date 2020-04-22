@@ -108,7 +108,7 @@ jobs:
     - name: Update and install feeds passwall
       if: env.EX_PKG == 'true'
       run: |
-        chmod +x passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./passwall.sh
+        chmod +x ssr-plus_passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./ssr-plus_passwall.sh
         
     # 更新源 sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
     - name: Update Feeds
