@@ -115,6 +115,7 @@ jobs:
       if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  |
+        sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
         ./scripts/feeds clean
         ./scripts/feeds update -a
 
