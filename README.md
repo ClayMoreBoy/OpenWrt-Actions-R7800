@@ -17,8 +17,8 @@
 
 ## 功能：
 - 可以支持两种种编译模式
-  1. 编译CTCGFW源码18.06-dev分支(含Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
-  2. 编译CTCGFW源码master分支(含Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
+  1. 编译Lean源码(含Lienol Package)
+  2. 编译CTCGFW源码(含Lean & Lienol & CTCGFW & Ntlf9t & Zxlhhyccc Package)
 - 自动上传固件
 - 自动发布固件
 - 自动创建分支
