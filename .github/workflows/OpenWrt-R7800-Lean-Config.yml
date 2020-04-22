@@ -77,13 +77,9 @@ jobs:
         echo "::set-env name=DATE::$(date "+%Y%m%d")"
         echo "::set-env name=RELEASE_DATE::$(date "+%Y-%m-%d")"
 
-    - name: 更新源
-      working-directory: ./openwrt
-      run: ./scripts/feeds update -a
-
-    - name: 安装源
-      working-directory: ./openwrt
-      run:  ./scripts/feeds install -a
+    - name: Update and install feeds passwall
+      run: |
+        chmod +x passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./passwall.sh
 
     - name: 创建自定义配置文件 - OpenWrt-R7800
       run: |
