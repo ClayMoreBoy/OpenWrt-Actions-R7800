@@ -114,8 +114,7 @@ jobs:
     - name: Update Feeds
       if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
-      run:  |        
-        echo "src-git helloworld https://github.com/ClayMoreBoy/helloworld" >> feeds.conf.default
+      run:  |
         ./scripts/feeds clean
         ./scripts/feeds update -a
 
