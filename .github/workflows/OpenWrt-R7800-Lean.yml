@@ -32,7 +32,7 @@ env:
   # 分支
   REPO_BRANCH: master
   # PassWall插件包
-  LIENOL_PKG: true
+  EX_PKG: true
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
@@ -106,7 +106,7 @@ jobs:
 
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
-      if: env.LIENOL_PKG == 'true'
+      if: env.EX_PKG == 'true'
       run: |
         chmod +x passwall.sh && cp passwall.sh ./openwrt && cd openwrt && ./passwall.sh
         
