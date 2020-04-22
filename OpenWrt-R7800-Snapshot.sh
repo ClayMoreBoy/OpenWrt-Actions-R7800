@@ -97,6 +97,7 @@ EOF
 
 # 插件选择:
 cat >> .config <<EOF
+CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
 CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 # CONFIG_PACKAGE_luci-app-smartdns is not set #SmartDnsDNS服务
