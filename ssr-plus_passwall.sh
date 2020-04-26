@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "src-git helloworld https://github.com/fw876/helloworld" >> feeds.conf.default
+echo "src-git helloworld https://github.com/ClayMoreBoy/helloworld" >> feeds.conf.default
 echo "src-git lienol https://github.com/ClayMoreBoy/openwrt-package" >> feeds.conf.default
 ./scripts/feeds clean
 ./scripts/feeds update -a
