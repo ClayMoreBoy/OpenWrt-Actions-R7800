@@ -1,7 +1,8 @@
   
 #!/bin/bash
 #=================================================
-# Description: DIY script
+# https://github.com/ClayMoreBoy/OpenWrt-Actions-R7800
+# Description: R7800 DIY script
 # Lisence: MIT
 # Author: ClayMoreBoy
 # Github: https://github.com/ClayMoreBoy
