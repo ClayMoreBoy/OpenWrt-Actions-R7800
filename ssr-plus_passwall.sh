@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "src-git helloworld https://github.com/ClayMoreBoy/helloworld" >> feeds.conf.default
-echo "src-git lienol https://github.com/ClayMoreBoy/lienol-openwrt-package" >> feeds.conf.default
+echo "src-git helloworld https://github.com/OpenWrt-Actions/helloworld" >> feeds.conf.default
+echo "src-git lienol https://github.com/OpenWrt-Actions/lienol-openwrt-package" >> feeds.conf.default
 ./scripts/feeds clean
 ./scripts/feeds update -a
 rm -rf feeds/lienol/lienol/v2ray
