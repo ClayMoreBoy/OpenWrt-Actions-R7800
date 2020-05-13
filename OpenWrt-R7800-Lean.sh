@@ -39,8 +39,8 @@ git clone https://github.com/OpenWrt-Actions/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/OpenWrt-Actions/luci-app-serverchan.git package/luci-app-serverchan
 git clone https://github.com/OpenWrt-Actions/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/ujincn/smartdns.git package/smartdns
-git clone https://github.com/ujincn/luci-app-smartdns-compat.git package/luci-app-smartdns-compat
+git clone https://github.com/OpenWrt-Actions/smartdns.git package/smartdns
+git clone https://github.com/OpenWrt-Actions/luci-app-smartdns-compat.git package/luci-app-smartdns-compat
 svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-theme-atmaterial package/luci-theme-atmaterial
 
 # 创建自定义配置文件 - OpenWrt-R7800
