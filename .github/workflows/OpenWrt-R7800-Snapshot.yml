@@ -11,7 +11,7 @@ name: OpenWrt-R7800-Snapshot
 on:
 # 定时触发
   schedule:
-    - cron: 0 1 * * *
+    - cron: 0 1 30 * *
 
 # Release 发布触发
 #  release:
