@@ -56,7 +56,7 @@ env:
   # 编译者
   BUILD_USER: ClayMoreBoy
   # 微信通知
-  SEND_WECHAT_MSG: true
+  SEND_WECHAT_MSG: false
 
 jobs:
   build:
