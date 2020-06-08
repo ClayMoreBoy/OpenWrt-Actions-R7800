@@ -210,7 +210,7 @@ jobs:
       id: tag
       if: steps.compile.outputs.status == 'success' && env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d-%H")"
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
         echo "::set-output name=status::success"
     
     # 发行固件
