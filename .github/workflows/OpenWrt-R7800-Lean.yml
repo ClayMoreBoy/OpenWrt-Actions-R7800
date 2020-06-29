@@ -74,8 +74,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         docker rmi $(docker images -q)
-        sudo -E swapoff /swapfile
-        sudo -E rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get remove -y --purge azure-cli ghc zulu* hhvm llvm* firefox google* dotnet* powershell mysql* php* mssql-tools msodbcsql17
         sudo -E apt-get update -y
         sudo -E apt-get full-upgrade -y
