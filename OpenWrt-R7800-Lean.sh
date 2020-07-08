@@ -257,7 +257,7 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告	
+CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告	
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
