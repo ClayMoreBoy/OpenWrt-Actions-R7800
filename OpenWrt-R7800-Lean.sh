@@ -94,10 +94,10 @@ EOF
 # EOF
 
 # IPv6支持:
-cat >> .config <<EOF
-CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
-CONFIG_PACKAGE_ipv6helper=y
-EOF
+# cat >> .config <<EOF
+# CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+# CONFIG_PACKAGE_ipv6helper=y
+# EOF
 
 # 多文件系统支持:
 # cat >> .config <<EOF
@@ -257,7 +257,7 @@ EOF
 
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告	
+CONFIG_PACKAGE_luci-app-adbyby-plus is not set #adbyby去广告	
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
@@ -268,7 +268,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
 CONFIG_PACKAGE_luci-app-vlmcsd=y #KMS激活服务器
-# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 # CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP服务器
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
