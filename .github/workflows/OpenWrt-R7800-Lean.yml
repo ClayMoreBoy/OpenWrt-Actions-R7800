@@ -46,7 +46,7 @@ env:
   # Github 邮箱
   GITHUB_USER_EMAIL: ${{ secrets.EMAIL }}
   # Github
-  GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git
+  GITHUB: github.com/OpenWrt-Actions/R7800.git
   # 上传固件
   UPLOAD_FIRMWARE: true
   # 上传到奶牛快传
@@ -209,7 +209,7 @@ jobs:
       id: tag
       if: steps.compile.outputs.status == 'success' && env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d-%H")"
         echo "::set-output name=status::success"
     
     # 发行固件
