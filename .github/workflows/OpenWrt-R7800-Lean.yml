@@ -46,7 +46,7 @@ env:
   # Github 邮箱
   GITHUB_USER_EMAIL: ${{ secrets.EMAIL }}
   # Github
-  GITHUB: github.com/OpenWrt-Actions/R7800.git
+  GITHUB: github.com/ClayMoreBoy/OpenWrt-Actions-R7800.git
   # 上传固件
   UPLOAD_FIRMWARE: true
   # 上传到奶牛快传
