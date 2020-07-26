@@ -66,7 +66,7 @@ jobs:
     steps:
     # 校验本地文件
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@main
 
     # 初始化编译环境
     - name: Initialization environment
@@ -186,7 +186,7 @@ jobs:
     
     # 上传固件
     - name: Upload Firmware Directory
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.BUILD_USER }}-${{ env.DATE }}-OpenWrt-${{ env.BRANCH }}-Firmware
