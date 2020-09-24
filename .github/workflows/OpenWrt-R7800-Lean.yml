@@ -128,9 +128,9 @@ jobs:
         make defconfig
 
     # SSH连接
-    - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
+    # - name: SSH connection to Actions
+    #  uses: P3TERX/debugger-action@master
+    #  if: env.SSH_ACTIONS == 'true'
 
     # 下载软件包
     - name: Make Download
