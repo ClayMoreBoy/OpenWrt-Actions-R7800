@@ -42,7 +42,7 @@ env:
   # 分支
   BRANCH: R7800-Lean
   # Github 用户名
-  GITHUB_USER_NAME: ClayMoreBoy
+  GITHUB_USER_NAME: chouniu
   # Github 邮箱
   GITHUB_USER_EMAIL: ${{ secrets.EMAIL }}
   # Github
