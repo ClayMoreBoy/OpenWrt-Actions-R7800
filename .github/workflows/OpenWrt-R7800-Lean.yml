@@ -156,11 +156,6 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       run: |
-          cd openwrt/bin/targets/*/*
-          rm -rf *uImage
-          rm -rf *.manifest
-          rm -rf *.seed
-          rm -rf *.buildinfo
           cd openwrt/bin
           git init
           git config user.name $GITHUB_USER_NAME
