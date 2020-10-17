@@ -242,13 +242,12 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: 删除旧的Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      uses: dev-drprasad/delete-older-releases@master
       with:
         keep_latest: 9
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     # 微信通知
     - name: WeChat Notification
