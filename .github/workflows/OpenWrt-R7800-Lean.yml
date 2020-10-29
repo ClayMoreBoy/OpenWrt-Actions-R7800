@@ -199,8 +199,8 @@ jobs:
       run: |
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"        
-        echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
+        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+        echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
     
     - name: Upload firmware to WeTransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
@@ -208,7 +208,7 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-        echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
+        echo "::set-env name=WETRANSFER_URL::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
 
     # 生成标签
     - name: Generate Tag
@@ -234,8 +234,8 @@ jobs:
             4、固件源码：${{ env.REPO_URL }}
             -- Build by ${{ env.BUILD_USER }} @ with Github Action on ${{ env.RELEASE_DATE }}
             🚀 Auto build | 自动编译
-            🔗 [Cowtransfer | 奶牛快传](${{ steps.cowtransfer.outputs.url }}) 
-            🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})       
+            🔗 国内[Cowtransfer | 奶牛快传](${{ env.COWTRANSFER_URL }})
+            🔗 国外[WeTransfer](${{ env.WETRANSFER_URL }})      
             当前使用版本:（编译前的最后一次大雕源码更新记录）            
             ${{ env.useVersionInfo }}
             ${{ github.event.commits[0].message }}
