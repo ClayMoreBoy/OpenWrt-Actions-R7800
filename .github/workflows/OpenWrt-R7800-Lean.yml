@@ -149,7 +149,7 @@ jobs:
       run: |
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
-        echo "::set-output name=status::success" >> $GITHUB_ENV
+        echo "::set-output name=status::success"
     
     # 上传到分支 By yfdoor
     - name: Upload Branch
@@ -176,7 +176,7 @@ jobs:
         rm -rf *.manifest
         rm -rf *.seed
         rm -rf *.buildinfo
-        echo "::set-env name=FIRMWARE::$PWD"
+        echo "::set-env name=FIRMWARE::$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
     
     # 上传固件
@@ -216,7 +216,7 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y-%m-%d")" >> $GITHUB_ENV
-        echo "::set-output name=status::success" >> $GITHUB_ENV
+        echo "::set-output name=status::success"
     
     # 发行固件
     - name: Upload Firmware To Release
