@@ -95,9 +95,9 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         useVersionInfo=$(git show -s --date=short --format="Author: %an<br/>Date: %cd<br/>Commit: %s")
-        echo ::set-env name=useVersionInfo::"$useVersionInfo" >> $GITHUB_ENV
-        echo ::set-env name=DATE::"$(TZ=UTC-8 date "+%Y%m%d")" >> $GITHUB_ENV
-        echo ::set-env name=RELEASE_DATE::"$(TZ=UTC-8 date "+%Y-%m-%d")" >> $GITHUB_ENV
+        echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
+        echo "DATE=$(TZ=UTC-8 date "+%Y%m%d")" >> $GITHUB_ENV
+        echo "RELEASE_DATE=$(TZ=UTC-8 date "+%Y-%m-%d")" >> $GITHUB_ENV
 
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
@@ -176,7 +176,7 @@ jobs:
         rm -rf *.manifest
         rm -rf *.seed
         rm -rf *.buildinfo
-        echo "::set-env name=FIRMWARE::$PWD" >> $GITHUB_ENV
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
     
     # 上传固件
@@ -215,7 +215,7 @@ jobs:
       id: tag
       if: steps.compile.outputs.status == 'success' && env.CREATE_RELEASE == 'true' && !cancelled()
       run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y-%m-%d")" >> $GITHUB_ENV
+        echo "RELEASE_TAG=$(TZ=UTC-8 date +"%Y-%m-%d")" >> $GITHUB_ENV
         echo "::set-output name=status::success"
     
     # 发行固件
