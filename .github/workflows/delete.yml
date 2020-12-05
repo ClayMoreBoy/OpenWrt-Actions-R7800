@@ -9,12 +9,12 @@
 # 下面的开关控制，仅在手动按钮启动时候生效，定时启动的话默认全开
 
 
-name: delete
+name: 删除旧固件
 on:
   workflow_dispatch:
     inputs:
       delete-older-workflow:
-        description: '删除github空间旧固件'
+        description: '删除旧工程'
         required: false
         default: 'true'           #删除github空间旧固件（true=开启）（false=关闭）
       delete-older-releases:
@@ -44,7 +44,7 @@ jobs:
         uses: dev-drprasad/delete-older-releases@v0.1.0
         if: (github.event.inputs.delete-older-releases == 'true' && github.event.inputs.delete-older-releases  != 'false')
         with:
-          keep_latest: 0         #保留多少个发布不删除
+          keep_latest: 1         #保留多少个发布不删除
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
