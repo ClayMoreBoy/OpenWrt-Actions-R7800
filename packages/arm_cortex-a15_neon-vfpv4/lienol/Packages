@@ -1,0 +1,57 @@
+Package: chinadns-ng
+Version: 1.0-beta.22-2
+Depends: libc, ipset
+License: GPLv3
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 16133
+Filename: chinadns-ng_1.0-beta.22-2_arm_cortex-a15_neon-vfpv4.ipk
+Size: 16914
+SHA256sum: 30bc8567a0a4e4b6cb323421ce07d5948915de0cf395c04650f25c900cf7486d
+Description:  ChinaDNS next generation, refactoring with epoll and ipset.
+
+Package: luci-app-passwall
+Version: 3.9-73
+Depends: libc, libmbedtls12, iptables-mod-tproxy, ip, ipset, coreutils, coreutils-base64, coreutils-nohup, luci-lib-jsonc, curl, ca-certificates, resolveip, unzip, dnsmasq-full, tcping, libuci-lua, ipt2socks, ssocks, microsocks, pdnsd-alt, shadowsocks-libev-ss-server, shadowsocksr-libev-alt, shadowsocksr-libev-ssr-local, shadowsocksr-libev-server, v2ray, trojan-plus, trojan-go, haproxy, chinadns-ng, https-dns-proxy, dns2socks
+Section: opt
+Architecture: all
+Installed-Size: 897045
+Filename: luci-app-passwall_3.9-73_all.ipk
+Size: 897033
+SHA256sum: c3b5054726cde593482ed3231d5849f335799ce1298d21c1cf27ecfc4de8621b
+Description:  LuCI support for PassWall
+
+Package: ssocks
+Version: 0.0.14-1
+Depends: libc, libopenssl1.1
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 13066
+Filename: ssocks_0.0.14-1_arm_cortex-a15_neon-vfpv4.ipk
+Size: 13816
+SHA256sum: 29a0cee31ea12faca61d20efcf5fa3cb9b8225ee5c3a52123327bf0dd7174a59
+Description:  sSocks is a package which contains: a socks5 server implements RFC 1928 (SOCKS V5) and RFC 1929 (Authentication for SOCKS V5), a reverse socks server and client, a netcat like tool and a socks5 relay.
+
+Package: trojan-go
+Version: 0.8.2-1
+Depends: libc
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 3055660
+Filename: trojan-go_0.8.2-1_arm_cortex-a15_neon-vfpv4.ipk
+Size: 3056997
+SHA256sum: 0f134be8becd7080916edbb742e6c3f2c3ed37cef6ae4321d2c80c7f3e710066
+Description:  An unidentifiable mechanism that helps you bypass GFW. It's compatible with original trojan with experimental features.
+
+Package: trojan-plus
+Version: 10.0.3-1
+Depends: libc, libpthread, libstdcpp6, libopenssl1.1, boost, boost-system, boost-program_options
+License: GPL-3.0
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 354299
+Filename: trojan-plus_10.0.3-1_arm_cortex-a15_neon-vfpv4.ipk
+Size: 354649
+SHA256sum: 15dd4c1fe702f3db436c80defec894faed3af5e83c9c67cf8a4bb174636298c8
+Description:  An unidentifiable mechanism that helps you bypass GFW. It's compatible with original trojan with experimental features.
+
