@@ -32,7 +32,7 @@ env:
   # 分支
   REPO_BRANCH: master
   # PassWall插件包
-  EX_PKG: true
+  EX_PKG: false
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
